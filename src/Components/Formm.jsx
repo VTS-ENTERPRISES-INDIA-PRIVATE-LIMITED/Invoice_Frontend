@@ -1,46 +1,6 @@
 import React, {  useState } from 'react';
 
-const numberToWords = (number) => {
-    const ones = ['','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen'];
-    const tens = ['','','twenty','thirty','forty','fifty','sixty','seventy','eighty','ninety'];
-    const scales = ['','thousand','million','billion','trillion'];
 
-    number = number.toString();
-    // number = number.replace(/[\, ]/g,'');
-    if (number !== parseFloat(number)) return 'not a number';
-    let x = number.indexOf('.');
-    if (x === -1) x = number.length;
-    if (x > 15) return 'too big';
-    const n = number.split(''); 
-    let str = '';
-    let sk = 0;
-    for (let i = 0; i < x; i++) {
-        if ((x-i) % 3 === 2) {
-            if (n[i] === '1') {
-                str += ones[Number(n[i + 1]) + 10] + ' ';
-                i++;
-                sk = 1;
-            } else if (n[i] !== 0) {
-                str += tens[n[i]] + ' ';
-                sk = 1;
-            }
-        } else if (n[i] !== 0) {
-            str += ones[n[i]] + ' ';
-            if ((x-i) % 3 === 0) str += 'hundred ';
-            sk = 1;
-        }
-        if ((x-i) % 3 === 1) {
-            if (sk) str += scales[(x-i-1) / 3] + ' ';
-            sk = 0;
-        }
-    }
-    if (x !== number.length) {
-        let y = number.length;
-        str += 'point ';
-        for (let i = x + 1; i < y; i++) str += ones[n[i]] + ' ';
-    }
-    return str.replace(/\s+/g,' ').trim();
-};
 
 
 const Form = () => {
@@ -53,6 +13,44 @@ const Form = () => {
         shipping_address: '',
         items: [{ item_name: '', mrp: '', selling_price: '', qty: '' }],
     });
+    const numberToWords = (num) => {
+        const ones = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+        const teens = ['ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'];
+        const tens = ['', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
+        const scales = ['', 'thousand', 'million', 'billion', 'trillion'];
+    
+        if (num === 0) return 'zero';
+    
+        // Helper function to convert a number less than 1000 to words
+        const parseGroup = (num) => {
+            let str = '';
+            const hundreds = Math.floor(num / 100);
+            const remainder = num % 100;
+            const ten = Math.floor(remainder / 10);
+            const one = remainder % 10;
+    
+            if (hundreds) str += ones[hundreds] + ' hundred ';
+            if (ten >= 2) str += tens[ten] + ' ';
+            if (ten === 1) str += teens[one] + ' ';
+            else if (one) str += ones[one] + ' ';
+            return str.trim();
+        };
+    
+        let words = '';
+        let scaleIndex = 0;
+        while (num > 0) {
+            const chunk = num % 1000;
+            if (chunk > 0) {
+                words = parseGroup(chunk) + ' ' + scales[scaleIndex] + ' ' + words;
+            }
+            num = Math.floor(num / 1000);
+            scaleIndex++;
+        }
+    
+        return words.trim();
+    };
+    
+    
 
     // useEffect(() => {
     //     const data = JSON.parse(localStorage.getItem('formData'));
