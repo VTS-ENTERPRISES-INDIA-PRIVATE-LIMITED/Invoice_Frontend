@@ -1,6 +1,46 @@
 import React, {  useState } from 'react';
+// import { PoweroffOutlined } from '@ant-design/icons';
+import { Button, Flex } from 'antd';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 
 const Form = () => {
+
+    //Antd
+    const [loadings, setLoadings] = useState([]);
+  const enterLoading = (index) => {
+    setLoadings((prevLoadings) => {
+      const newLoadings = [...prevLoadings];
+      newLoadings[index] = true;
+      return newLoadings;
+    });
+    setTimeout(() => {
+      setLoadings((prevLoadings) => {
+        const newLoadings = [...prevLoadings];
+        newLoadings[index] = false;
+        return newLoadings;
+      });
+    }, 6000);
+  };  
+
+    //mui
+    // <Box
+    //   component="form"
+    //   sx={{
+    //     '& > :not(style)': { m: 1, width: '25ch' },
+    //   }}
+    //   noValidate
+    //   autoComplete="off"
+    // ></Box>
+    <Box
+      component="form"
+      sx={{
+        '& .MuiTextField-root': { m: 1, width: '25ch' },
+      }}
+      noValidate
+      autoComplete="off"
+    ></Box>
+
     const [preview,setPreview]=useState(false);
     const [count, setCount] = useState(1);
     const [invoice,setInvoice]=useState(false);
@@ -95,6 +135,7 @@ const Form = () => {
     const submitForm = () => {
         setPreview(true)
         setInvoice(true)
+        enterLoading(0)
         // localStorage.setItem('formData', JSON.stringify(formData));
         // window.location.href = 'invoice.html';
     };
@@ -107,14 +148,49 @@ const Form = () => {
             </div>
             <form id="item-form">
                 <div className="customer-info">
-                    <input
+                    {/* <input
                         type="text"
                         placeholder="Customer Name"
                         name="customer_name"
                         value={formData.customer_name}
                         onChange={handleChange}
-                    />
-                    <textarea
+                    /> */}
+                        <TextField 
+                            required 
+                            style={{width:"90%",marginBottom:"3vh"}} 
+                            id="outlined-basic" 
+                            name="customer_name" 
+                            label="Customer Name" 
+                            value={formData.customer_name} 
+                            onChange={handleChange} 
+                            variant="outlined" />
+                        <TextField
+                            required 
+                            style={{width:"42.5%",marginBottom:"3vh"}}
+                            id="outlined-multiline-static"
+                            name='billing_address'
+                            label="Billing Address"
+                            multiline
+                            value={formData.billing_address}
+                            rows={4}
+                            onChange={handleChange} 
+                            variant="outlined"
+                        />
+                        <TextField
+                            required 
+                            // value={formData.shipping_address}
+                            style={{width:"42.5%",marginBottom:"3vh"}}
+                            id="outlined-multiline-static"
+                            label="Shipping Address"
+                            name="shipping_address"
+                            multiline
+                            rows={4}
+                            onChange={handleChange} 
+                            variant="outlined"
+                        />
+                        {/* <TextField required style={{width:"42.5%",height:"10px",marginBottom:"3vh"}} id="outlined-basic" label="Billing Address" value={formData.billing_address} onChange={handleChange} variant="outlined" /> */}
+                        {/* <TextField required style={{width:"42.5%",marginBottom:"3vh"}} id="outlined-basic" label="Shipping Address" value={formData.shipping_address} onChange={handleChange} variant="outlined" /> */}
+                    {/* <textarea
                         placeholder="Billing Address"
                         name="billing_address"
                         value={formData.billing_address}
@@ -125,54 +201,100 @@ const Form = () => {
                         name="shipping_address"
                         value={formData.shipping_address}
                         onChange={handleChange}
-                    />
+                    /> */}
                 </div>
                 <div id="items-container">
                     {formData.items.map((item, index) => (
                         <div className="item" key={index}>
                             <div className="item-selection">
                                 <p>Item Details</p>
-                                <button type="button" onClick={() => removeItemRow(index)}>remove</button>
+                                <Button type="primary" onClick={() => removeItemRow(index)}>remove</Button>
+                                {/* <button type="button" >remove</button> */}
                             </div>
                             <div className="item-row">
-                                <input
+                            <TextField 
+                                required 
+                                style={{width:"42.5%",marginBottom:"3vh"}} 
+                                id="outlined-basic" 
+                                name={`item_name-${index}`}
+                                label="Item Name" 
+                                value={item.item_name}
+                                onChange={handleChange}
+                                variant="outlined" 
+                            />
+                            <TextField 
+                                required 
+                                style={{width:"42.5%",marginBottom:"3vh"}} 
+                                id="outlined-basic" 
+                                label="MRP" 
+                                name={`mrp-${index}`}
+                                value={item.mrp}
+                                onChange={handleChange}
+                                variant="outlined" 
+                            />
+                            <TextField 
+                                required 
+                                style={{width:"42.5%",marginBottom:"3vh"}} 
+                                id="outlined-basic" 
+                                label="Selling Price" 
+                                name={`selling_price-${index}`}
+                                value={item.selling_price}
+                                onChange={handleChange}
+                                variant="outlined" 
+                            />
+                            <TextField 
+                                required 
+                                style={{width:"42.5%",marginBottom:"3vh"}} 
+                                id="outlined-basic" 
+                                label="Qty" 
+                                name={`qty-${index}`}
+                                value={item.qty}
+                                onChange={handleChange}
+                                variant="outlined" 
+                            />
+
+                                {/* <input
                                     type="text"
                                     placeholder="Item Name"
                                     name={`item_name-${index}`}
                                     value={item.item_name}
                                     onChange={handleChange}
-                                />
-                                <input
+                                /> */}
+                                {/* <input
                                     type="number"
                                     placeholder="MRP"
                                     name={`mrp-${index}`}
                                     value={item.mrp}
                                     onChange={handleChange}
-                                />
-                                <input
+                                /> */}
+                                {/* <input
                                     type="number"
                                     placeholder="Selling Price"
                                     name={`selling_price-${index}`}
                                     value={item.selling_price}
                                     onChange={handleChange}
-                                />
-                                <input
+                                /> */}
+                                {/* <input
                                     type="number"
                                     placeholder="Qty"
                                     name={`qty-${index}`}
                                     value={item.qty}
                                     onChange={handleChange}
-                                />
+                                /> */}
                             </div>
                         </div>
                     ))}
                 </div>
+                
                 <div className="add-item-btn">
-                    <button type="button" onClick={addItemRow}>Add Item</button>
+                    <Button type="primary" onClick={addItemRow}>Add Item</Button>
+                    {/* <button type="button" onClick={addItemRow}>Add Item</button> */}
                     <p>Total Items - {count}</p>
                 </div><br />
                 <div className="submit-btn">
-                    <button type="button" onClick={submitForm}>Generate Invoice</button>
+                    <Button type="primary"  loading={loadings[0]} onClick={submitForm}>
+                        Generate Invoice
+                    </Button>
                     { preview && <button type="button">Preview</button>}
                 </div>
             </form>
