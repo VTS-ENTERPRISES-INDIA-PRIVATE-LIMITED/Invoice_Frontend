@@ -84,9 +84,9 @@ const Form = () => {
     const totalAmount = formData.items.reduce((sum, item) => sum + parseFloat(item.selling_price) * parseInt(item.qty), 0);
     const totalSavings = totalMRP - totalAmount;
     const totalQty = formData.items.reduce((sum, item) => sum + parseInt(item.qty), 0);
-    const taxableAmount = totalAmount / 1.12;
-    const cgst = taxableAmount * 0.06;
-    const sgst = taxableAmount * 0.06;
+    const cgst = totalAmount * 0.02;
+    const sgst = totalAmount * 0.02;
+    const totalAmountWithGST=totalAmount + cgst + sgst;
 
     
     const addItemRow = () => {
@@ -335,27 +335,27 @@ const Form = () => {
                 <div className="hr"></div>
                 <div className="total-mrp-det-light">
                     <div>
-                        <p>Taxable Amount:</p>
-                        <p>CGST 6.0%:</p>
-                        <p>SGST 6.0%:</p>
+                        <p>CGST 2.0%:</p>
+                        <p>SGST 2.0%:</p>
+                        <p>Total Amount with GST:</p>
                     </div>
                     <div>
-                        <p>₹ {taxableAmount.toFixed(2)}</p>
                         <p>₹ {cgst.toFixed(2)}</p>
                         <p>₹ {sgst.toFixed(2)}</p>
+                        <p>₹ {totalAmountWithGST.toFixed(2)}</p>
                     </div>
                 </div>
             </div>
             <br />
             <div className="price-words">
                 <p>Total Items / Qty: <span>{formData.items.length}</span> / <span>{totalQty}</span></p>
-                <p>Total amount (in words): <span>INR {numberToWords(totalAmount.toFixed(2))} only</span></p>
+                <p>Total amount (in words): <span>INR {numberToWords(totalAmountWithGST.toFixed(2))} only</span></p>
             </div>
             <br />
             <div style={{height: '1.5px', width: '100%', background: 'blue'}}></div>
             <br />
             <div className="footer-price">
-                <p>Amount Payable: ₹ <span>{totalAmount.toFixed(2)}</span></p>
+                <p>Amount Payable: ₹ <span>{totalAmountWithGST.toFixed(2)}</span></p>
             </div>
             <div className="stamp">
                 <div className="qr-price"> 
