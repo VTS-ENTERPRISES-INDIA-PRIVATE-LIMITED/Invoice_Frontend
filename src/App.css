@@ -1,4 +1,5 @@
 body {
+  /* width: 1000px; */
   font-family: 'Calibri';
   font-size: large;
   display: flex;
@@ -8,7 +9,9 @@ body {
   background-color:rgb(247, 245, 245);
 }
 .App{
+  width: 60vw;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
 }
 .form-container {
@@ -16,7 +19,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 80%;
+  /* width: 100vw; */
   background:  #ffffff;
   padding: 20px;
   border-radius: 10px;
@@ -27,12 +30,13 @@ body {
   text-align: center;
   margin-bottom: 20px;
 }
-
+/* 
 .form-header h2 {
   margin: 0;
-}
+} */
 
 .item-row {
+  /* width: 100vw; */
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -51,6 +55,7 @@ body {
 } */
 
 .customer-info {
+  width: 30vw;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
@@ -142,6 +147,7 @@ hr{
 } 
 
 #items-container {
+  width: 30vw;
   max-height: 300px; 
   overflow-y: auto;
 }

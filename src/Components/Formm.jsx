@@ -1,8 +1,9 @@
 import React, {  useState } from 'react';
 // import { PoweroffOutlined } from '@ant-design/icons';
-import { Button, Flex } from 'antd';
-import Box from '@mui/material/Box';
+import { Button } from 'antd';
+// import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
+import { Slider } from 'antd';
 
 const Form = () => {
 
@@ -22,7 +23,13 @@ const Form = () => {
       });
     }, 6000);
   };  
-
+  const [gstin,setGSTIN]=useState(0);
+  const onChange = (value) => {
+    setGSTIN(value);
+  };
+  const onChangeComplete = (value) => {
+    setGSTIN(value);
+  };
 
     const [preview,setPreview]=useState(false);
     const [count, setCount] = useState(1);
@@ -116,13 +123,15 @@ const Form = () => {
 
     return (
         <>{!invoice && 
-        <div className="form-container">
-            <div className="form-header">
-                <h2>Customer Invoice Details Form</h2>
-            </div>
+        
+            
             <form id="item-form">
-                <div className="customer-info">
-
+                <div className="form-container">
+                    <div style={{display:"flex"}}>
+                        <div className="customer-info">
+                        <div className="form-header">
+                            <h2>Customer Invoice Details Form</h2>
+                        </div>
                         <TextField 
                             required 
                             style={{width:"90%",marginBottom:"3vh"}} 
@@ -156,81 +165,92 @@ const Form = () => {
                             variant="outlined"
                         />
                
-                </div>
-                <hr />
-                <div id="items-container">
-                    {formData.items.map((item, index) => (
-                        <div className="item" key={index}>
-                            <div className="item-selection">
-                                <p>Item Details</p>
-                                <Button type="primary" onClick={() => removeItemRow(index)}>remove</Button>
-                                {/* <button type="button" >remove</button> */}
-                            </div>
-                            <div className="item-row">
-                            <TextField 
-                                required 
-                                style={{width:"42.5%",marginBottom:"3vh"}} 
-                                id="outlined-basic" 
-                                name={`item_name-${index}`}
-                                label="Item Name" 
-                                value={item.item_name}
-                                onChange={handleChange}
-                                variant="outlined" 
-                            />
-                            <TextField 
-                                required 
-                                style={{width:"42.5%",marginBottom:"3vh"}} 
-                                id="outlined-basic" 
-                                label="MRP" 
-                                name={`mrp-${index}`}
-                                value={item.mrp}
-                                onChange={handleChange}
-                                variant="outlined" 
-                            />
-                            <TextField 
-                                required 
-                                style={{width:"42.5%",marginBottom:"3vh"}} 
-                                id="outlined-basic" 
-                                label="Selling Price" 
-                                name={`selling_price-${index}`}
-                                value={item.selling_price}
-                                onChange={handleChange}
-                                variant="outlined" 
-                            />
-                            <TextField 
-                                required 
-                                style={{width:"42.5%",marginBottom:"3vh"}} 
-                                id="outlined-basic" 
-                                label="Qty" 
-                                name={`qty-${index}`}
-                                value={item.qty}
-                                onChange={handleChange}
-                                variant="outlined" 
-                            />
-
-                                
-                            </div>
                         </div>
-                    ))}
-                </div>
-                <hr />
-                <div className="add-item-btn">
-                    <Button type="primary" onClick={addItemRow}>Add Item</Button>
-                    <div style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
-                    <p style={{marginRight:"10px"}}>GSTIN</p>
-                    <input style={{outline:"none",border:"1px solid grey",borderRadius:"5px",height:"20px"}} type="text" placeholder='07AAECR2971C1Z'/>
+                        <div id="items-container">
+                        {formData.items.map((item, index) => (
+                            <div className="item" key={index}>
+                                <div className="item-selection">
+                                    <p>Item Details</p>
+                                    <Button type="primary" onClick={() => removeItemRow(index)}>remove</Button>
+                                    {/* <button type="button" >remove</button> */}
+                                </div>
+                                <div className="item-row">
+                                <TextField 
+                                    required 
+                                    style={{width:"42.5%",marginBottom:"3vh"}} 
+                                    id="outlined-basic" 
+                                    name={`item_name-${index}`}
+                                    label="Item Name" 
+                                    value={item.item_name}
+                                    onChange={handleChange}
+                                    variant="outlined" 
+                                />
+                                <TextField 
+                                    required 
+                                    style={{width:"42.5%",marginBottom:"3vh"}} 
+                                    id="outlined-basic" 
+                                    label="MRP" 
+                                    name={`mrp-${index}`}
+                                    value={item.mrp}
+                                    onChange={handleChange}
+                                    variant="outlined" 
+                                />
+                                <TextField 
+                                    required 
+                                    style={{width:"42.5%",marginBottom:"3vh"}} 
+                                    id="outlined-basic" 
+                                    label="Selling Price" 
+                                    name={`selling_price-${index}`}
+                                    value={item.selling_price}
+                                    onChange={handleChange}
+                                    variant="outlined" 
+                                />
+                                <TextField 
+                                    required 
+                                    style={{width:"42.5%",marginBottom:"3vh"}} 
+                                    id="outlined-basic" 
+                                    label="Qty" 
+                                    name={`qty-${index}`}
+                                    value={item.qty}
+                                    onChange={handleChange}
+                                    variant="outlined" 
+                                />
+
+                                    
+                                </div>
+                            </div>
+                        ))}
+                        </div>
                     </div>
-                    <p>Total Items - {count}</p>
-                </div><br />
-                <div className="submit-btn">
-                    <Button type="primary"  loading={loadings[0]} onClick={submitForm}>
-                        Generate Invoice
-                    </Button>
-                    { preview && <button type="button">Preview</button>}
+                    <div className='bottom'>
+
+                        <div className="add-item-btn">
+                            <Button type="primary" onClick={addItemRow}>Add Item</Button>
+                            <div style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
+                            <p style={{marginRight:"10px"}}>GSTIN</p>
+                            <input style={{outline:"none",border:"1px solid grey",borderRadius:"5px",height:"20px"}} type="text" placeholder='07AAECR2971C1Z'/>
+                            </div>
+                            <p>Total Items - {count}</p>
+                        </div><br />
+                        <p style={{width:"100%",display:"flex",justifyContent:"center"}}>Set GSTIN : {gstin} %</p>
+                        <Slider defaultValue={0} onChange={onChange} onChangeComplete={onChangeComplete} />
+                        <div className="submit-btn">
+                            <Button type="primary"  loading={loadings[0]} onClick={submitForm}>
+                                Generate Invoice
+                            </Button>
+                            { preview && <button type="button">Preview</button>}
+                        </div>
+                    </div>
                 </div>
             </form>
-        </div>
+        
         }
+
+
+
+
+
+
 
         {invoice && 
 
