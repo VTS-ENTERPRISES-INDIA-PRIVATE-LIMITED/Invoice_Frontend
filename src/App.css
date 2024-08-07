@@ -10,6 +10,492 @@
   cursor: pointer;
 }
 
+
+
+/* body{
+  font-family:"Trebuchet MS", Helvetica, sans-serif;
+} */
+.Landing-body{
+  margin-top: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.Landing-body button{
+  font-size: medium;
+  margin: 20px ;
+  cursor: pointer;
+  height: 60px;
+  width: 300px;
+  border-radius: 50px;
+  color: #ffffff;
+  border: none;
+  box-shadow: 0 0 10px rgb(149, 149, 248);
+  background: linear-gradient(0deg,rgb(91, 200, 237),rgb(149, 149, 248));
+}
+
+.Landing-body button:active{
+  background: linear-gradient(0deg,rgb(163, 163, 240),rgb(64, 209, 241));
+}
+.bgimg{
+  height: 120vh;
+  /* display: flex; */
+  /* justify-content: center; */
+  /* position: absolute; */
+  /* left: 26%; */
+  /* top :25px; */
+  margin: 30px 0px;
+  box-shadow: 0 0 50px rgb(171, 187, 231);
+}
+.svgimg{
+  display: flex;
+  justify-content: center;
+  margin: 40px 0px;
+  width: 100%;
+  /* position: relative; */
+  /* box-shadow:0 0 50px rgb(143, 153, 247); */
+}
+.bgimgmain{
+  position: absolute;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.body {
+  /* width: 1000px; */
+  font-family: 'Calibri';
+  font-size: large;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color:rgb(247, 245, 245);
+}
+/* .App{
+  width: 60vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+} */
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* width: 100vw; */
+  background:  #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px grey;
+}
+
+.form-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+/* 
+.form-header h2 {
+  margin: 0;
+} */
+
+.item-row {
+  /* width: 100vw; */
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-bottom: 20px;
+  /* margin: 0px 20px; */
+}
+
+/* .item-row input {
+  width: 45%;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+} */
+
+.customer-info {
+  width: 30vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+/* .customer-info textarea {
+  width: 48%;
+  height: 100px;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.customer-info input {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+} */
+
+.add-item-btn {
+  width: 50vw;
+  margin: 0px 40px;
+  display: flex;
+  justify-content:space-between;
+}
+
+.submit-btn {
+  display: flex;
+  justify-content: center;
+}
+
+/* .add-item-btn button {
+  width: 20%;
+  padding: 5px;
+  font-size: medium;
+  border: none;
+  border-radius: 10px;
+  background-color: #4477ae;
+  color: white;
+  cursor: pointer;
+  margin: 10px 5px;
+} */
+
+/* .submit-btn button {
+  width: 25%;
+  padding: 5px;
+  font-size: medium;
+  border: none;
+  border-radius: 10px;
+  background-color: #39ad48;
+  color: white;
+  cursor: pointer;
+  margin: 5px;
+} */
+
+/* .add-item-btn button:hover {
+  background-color: #506d9c;
+} */
+
+/* .submit-btn button:hover {
+  background-color: #45a049;
+} */
+
+.item-selection {
+  
+  margin-left: 40px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+.item-selection p{
+  font-size: larger;
+  margin-right: 10px;
+}
+/* hr{
+  width: 90%;
+} */
+.item-selection button {
+  font-size: small;
+  border-radius: 15px;
+  height: 25px;
+  width: 60px;
+  padding-bottom: 6px
+} 
+
+#items-container {
+  width: 30vw;
+  max-height: 300px; 
+  overflow-y: auto;
+}
+
+.item {
+  padding-bottom: 10px;
+}
+
+
+
+/* Invoice CSS */
+
+.Invoice-page {
+  padding: 50px;
+  height: 100%;
+  width: 100vh;
+  justify-content: center;
+  margin-top: 650px;
+  margin-bottom: 50px;
+  box-shadow: 0 0 10px grey;
+  border-radius: 10px;
+}
+
+.top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.top-address {
+  display: flex;
+  flex-direction: column;
+}
+
+.top-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.top-logo img {
+  height: 120px;
+  width: 120px;
+}
+
+.addresses {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.addresses div {
+  width: 30%;
+}
+
+p {
+  margin: 0px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+tr {
+  border-bottom: 2px solid rgb(212, 207, 207);
+}
+
+th, td {
+  padding: 8px;
+}
+
+th {
+  text-align: left;
+}
+
+.total-mrp {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.total-mrp-det {
+  font-weight: bold;
+  display: flex;
+  flex-direction: row;
+  width: 40vh;
+  justify-content: space-between;
+}
+
+.total-mrp-det div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.total-mrp-det-light {
+  display: flex;
+  flex-direction: row;
+  width: 40vh;
+  justify-content: space-between;
+  color: rgb(108, 111, 111);
+}
+
+.total-mrp-det-light div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.footer-price p {
+  font-weight: bold;
+  color: rgb(108, 111, 111);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+/* .hr { 
+  width: 25vh; 
+  height: 1px; 
+  background: #c0bebe; 
+  display: flex;
+  align-items: flex-end;
+} */
+
+.price-words {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bolder;
+  font-size: small;
+}
+
+.price-words p {
+  color: rgb(108, 111, 111);
+}
+
+.qr-price {
+  display: flex;
+  width: 50vh;
+  justify-content: space-between;
+}
+
+.adjs {
+  margin-left: 3vh;
+}
+
+.stamp {
+  display: flex;
+  justify-content: space-between;
+}
+
+.download-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.tabletop {
+  background-color: rgb(248, 250, 251);
+  border-top: rgb(85, 114, 150) solid 2px;
+  text-align: left;
+}
+
+#shipping-address,
+#billing-address,
+#customer-name {
+  word-wrap: break-word;
+}
+
+
+
+
+
+
+
+
+
+
+
 /*login css*/
 .login-modal-overlay {
   position: fixed;
