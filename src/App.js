@@ -1,10 +1,14 @@
 import './App.css';
-import Form from './Components/Formm';
+// import Form from './Components/Formm';
+import LandingPage from './Components/LandingPage';
+// import Apps from './Components/App'
 
 function App() {
   return (
-    <div className="App">
-      <Form />
+    <div>
+      {/* <Form /> */}
+      <LandingPage/>
+      {/* <Apps/> */}
     </div>
   );
 }

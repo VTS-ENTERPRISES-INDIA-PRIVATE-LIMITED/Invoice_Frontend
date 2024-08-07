@@ -127,11 +127,9 @@ const Form = () => {
             
             <form id="item-form">
                 <div className="form-container">
+                    <h2 style={{marginBottom:"30px"}}>Customer Invoice Details Form</h2>
                     <div style={{display:"flex"}}>
                         <div className="customer-info">
-                        <div className="form-header">
-                            <h2>Customer Invoice Details Form</h2>
-                        </div>
                         <TextField 
                             required 
                             style={{width:"90%",marginBottom:"3vh"}} 
@@ -233,7 +231,7 @@ const Form = () => {
                             <p>Total Items - {count}</p>
                         </div><br />
                         <p style={{width:"100%",display:"flex",justifyContent:"center"}}>Set GSTIN : {gstin} %</p>
-                        <Slider defaultValue={0} onChange={onChange} onChangeComplete={onChangeComplete} />
+                        <Slider style={{}} defaultValue={0} onChange={onChange} onChangeComplete={onChangeComplete} />
                         <div className="submit-btn">
                             <Button type="primary"  loading={loadings[0]} onClick={submitForm}>
                                 Generate Invoice
