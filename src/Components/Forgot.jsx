@@ -3,10 +3,18 @@ import React, { useState } from 'react';
 function Forgot() {
   const [email, setEmail] = useState('');
   const [emailError, setEmailError] = useState('');
+  const [showOtpInput, setShowOtpInput] = useState(false);
+  const [otp, setOtp] = useState('');
+  const [otpError, setOtpError] = useState('');
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
     if (emailError) setEmailError('');
+  };
+
+  const handleOtpChange = (e) => {
+    setOtp(e.target.value);
+    if (otpError) setOtpError('');
   };
 
   const validateEmail = (email) => {
@@ -19,16 +27,24 @@ function Forgot() {
     if (!validateEmail(email)) {
       setEmailError('Invalid email address');
     } else {
+      setShowOtpInput(true);
+      setEmailError('');
       alert("Recovery email sent");
+    }
+  };
+
+  const handleOtpSubmit = () => {
+    if (otp.trim() === '') {
+      setOtpError('OTP is required');
+    } else {
+      alert('OTP verified successfully');
+      setOtpError('');
     }
   };
 
   return (
     <div className="forgot-modal-overlay">
       <div className="forgot-modal">
-        {/* <button className="forgot-close-btn" onClick={()=>console.log('wf')}>
-          &times;
-        </button> */}
         <div className="forgot-modal-content">
           <img src="https://app.freeinvoicebuilder.com/InvoiceBuilder/img/InvoiceBuilder_CW.Invoice.png?INeLRY_F4sR+RpxpAEBbdQ" alt="Logo" className="forgot-modal-logo" />
           <h2>Forgot password?</h2>
@@ -46,8 +62,24 @@ function Forgot() {
               />
               {emailError && <p className="forgot-error-message">{emailError}</p>}
             </div>
-            <button type="submit" className="forgot-recovery-btn">Send recovery email</button>
+            <button type="submit" className="forgot-recovery-btn">Get OTP</button>
           </form>
+          {showOtpInput && (
+            <div className="otp-section">
+              <h5>Enter OTP</h5>
+              <input
+                type="number"
+                id="otp"
+                placeholder="Enter OTP"
+                className="otp-input"
+                value={otp}
+                onChange={handleOtpChange}
+                required
+              />
+              {otpError && <p className="otp-error-message">{otpError}</p>}
+              <button type="button" className="verify-otp-btn" onClick={handleOtpSubmit}>Verify OTP</button>
+            </div>
+          )}
         </div>
       </div>
     </div>
