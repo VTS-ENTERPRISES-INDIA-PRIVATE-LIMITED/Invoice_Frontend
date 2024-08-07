@@ -1,17 +1,17 @@
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Login from './Components/Login';
+import Forgot from './Components/Forgot';
 import './App.css';
-import Dashboard from './Components/Dashboard';
-// import Form from './Components/Formm';
-import LandingPage from './Components/LandingPage';
-// import Apps from './Components/App'
 
 function App() {
   return (
-    <div>
-      {/* <Form /> */}
-      {/* <LandingPage/> */}
-      <Dashboard/>
-      {/* <Apps/> */}
-    </div>
+    <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Login/>} />
+        <Route path="/forgot" element={<Forgot/>} />
+    </Routes>
+    </BrowserRouter>
   );
 }
 
