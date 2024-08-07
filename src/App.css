@@ -29,26 +29,28 @@ body {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
   margin-bottom: 20px;
+  /* margin: 0px 20px; */
 }
 
-.item-row input {
+/* .item-row input {
   width: 45%;
   padding: 8px;
   box-sizing: border-box;
   border: 1px solid #ccc;
   border-radius: 5px;
   margin-bottom: 10px;
-}
+} */
 
 .customer-info {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
-.customer-info textarea {
+
+/* .customer-info textarea {
   width: 48%;
   height: 100px;
   padding: 8px;
@@ -65,7 +67,7 @@ body {
   border: 1px solid #ccc;
   border-radius: 5px;
   margin-bottom: 10px;
-}
+} */
 
 .add-item-btn {
   display: flex;
@@ -77,7 +79,7 @@ body {
   justify-content: center;
 }
 
-.add-item-btn button {
+/* .add-item-btn button {
   width: 20%;
   padding: 5px;
   font-size: medium;
@@ -87,9 +89,9 @@ body {
   color: white;
   cursor: pointer;
   margin: 10px 5px;
-}
+} */
 
-.submit-btn button {
+/* .submit-btn button {
   width: 25%;
   padding: 5px;
   font-size: medium;
@@ -99,29 +101,36 @@ body {
   color: white;
   cursor: pointer;
   margin: 5px;
-}
+} */
 
-.add-item-btn button:hover {
+/* .add-item-btn button:hover {
   background-color: #506d9c;
-}
+} */
 
-.submit-btn button:hover {
+/* .submit-btn button:hover {
   background-color: #45a049;
-}
+} */
 
 .item-selection {
+  
+  margin-left: 40px;
+  margin-bottom: 10px;
   display: flex;
   align-items: center;
 }
+.item-selection p{
+  font-size: larger;
+  margin-right: 10px;
+}
 
-.item-selection button {
+/* .item-selection button {
   margin-left: 10px;
-  height: 20px;
+  height: 25px;
   border: none;
   border-radius: 5px;
   box-shadow: 0 0 3px grey;
   cursor: pointer;
-}
+} */
 
 #items-container {
   max-height: 300px; 
