@@ -25,9 +25,26 @@
   background: linear-gradient(0deg,rgb(163, 163, 240),rgb(64, 209, 241));
 }
 .bgimg{
-  box-shadow: 0 0 50px rgb(171, 170, 170);
+  height: 120vh;
+  /* display: flex; */
+  /* justify-content: center; */
+  /* position: absolute; */
+  /* left: 26%; */
+  /* top :25px; */
+  margin: 30px 0px;
+  box-shadow: 0 0 50px rgb(171, 187, 231);
 }
-
+.svgimg{
+  display: flex;
+  justify-content: center;
+  margin: 40px 0px;
+  width: 100%;
+  /* position: relative; */
+  /* box-shadow:0 0 50px rgb(143, 153, 247); */
+}
+.bgimgmain{
+  position: absolute;
+}
 
 
 

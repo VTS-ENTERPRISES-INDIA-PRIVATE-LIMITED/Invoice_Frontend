@@ -4,10 +4,11 @@ import { css } from '@emotion/css';
 import { useContext } from 'react';
 import { DownOutlined, SmileOutlined } from '@ant-design/icons';
 import { Dropdown, Space } from 'antd';
-import Logo from './14b9c2d3fc8e930d59126591c1fcbbfd.png';
+import Logo from './logo.jpg';
 import Bg from './Bg.png'
 import One from './bg1img.png'
 import Two from './bg2img.png'
+import SVG from './backbg.svg'
 const items = [
     {
       key: '1',
@@ -56,7 +57,7 @@ const LandingPage = () => {
     <div style={{width:"100vw"}}>
         <div style={{display:"flex",justifyContent:"space-evenly",alignItems:"center"}}>
             <div>
-                <img style={{height:"50px",width:"50px",borderRadius:"5px"}} src={Logo} alt="logo" />
+                <img style={{height:"55px",width:"55px",borderRadius:"5px"}} src={Logo} alt="logo" />
             </div>
             <div style={{margin:"20px",width:"60vw",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
             <Dropdown menu={{items,}}>
@@ -101,7 +102,11 @@ const LandingPage = () => {
                 <h1>Online Invoice Generator</h1>
                 <p style={{fontSize:"21px",fontWeight:"bold",margin:"20px"}}>Create & download invoices for free</p>
                 <button>Create Free Invoice Now</button>
-                <img className='bgimg' src={Bg} alt="" />
+                <div className='svgimg'>
+                    {/* <img style={{width:"100%"}} src={SVG} alt="" /> */}
+                    <img className='bgimg' src={Bg} alt="" />
+                </div>
+                
                 <button>Create Free Invoice Now</button>
                 <div style={{display:"flex",width:"70vw",justifyContent:"space-between",alignItems:"center",marginTop:"50px"}}>
                     <div style={{display:"flex",flexDirection:"column", width:"30vw"}}>
