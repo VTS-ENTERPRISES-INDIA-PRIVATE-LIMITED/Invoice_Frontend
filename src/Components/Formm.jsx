@@ -1,8 +1,5 @@
 import React, {  useState } from 'react';
 
-
-
-
 const Form = () => {
     const [preview,setPreview]=useState(false);
     const [count, setCount] = useState(1);
