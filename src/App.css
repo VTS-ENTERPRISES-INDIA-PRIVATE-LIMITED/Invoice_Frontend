@@ -174,7 +174,7 @@
   background: #fff;
   padding: 20px;
   border-radius: 10px;
-  width: 350px;
+  width: 370px;
   position: relative;
 }
 
@@ -217,6 +217,10 @@
   border: 1px solid #ccc;
   border-radius: 5px;
 }
+.forgot-form-group input:focus {
+  border-color: #007bff;
+  outline: none;
+}
 
 .forgot-form-group input.forgot-error {
   border: 1px solid red;
@@ -234,13 +238,13 @@
   background-color: #007bff;
   color: white;
   border: none;
-  border-radius: 10px;
+  border-radius: 15px;
   cursor: pointer;
 }
+
 .otp-section {
   margin-top: 7px;
   padding: 20px;
-
 }
 
 .otp-section h5 {
@@ -250,7 +254,7 @@
 }
 
 .otp-input {
-  width: 90%;
+  width: 30%;
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 4px;
@@ -264,24 +268,72 @@
 }
 
 .verify-otp-btn {
-  width: 40%;
-  padding: 10px;
+  width: 30%;
+  padding: 8px;
   background-color: #007bff;
   color: #fff;
   border: none;
-  border-radius: 10px;
+  border-radius: 15px;
   font-size: 14px;
+  margin-left: 10%;
   cursor: pointer;
 }
-
-/* .verify-otp-btn:hover {
-  background-color: #0056b3;
-} */
 
 .verify-otp-btn:disabled {
   background-color: #ccc;
   cursor: not-allowed;
 }
+
+.new-password-section {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.new-password-section h5 {
+  margin-bottom: 15px;
+  font-size: 15px;
+  color: #333;
+}
+
+.new-password-section input {
+  width: 90%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.new-password-section input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.new-password-section input.new-password-error,
+.new-password-section input.confirm-password-error {
+  border-color: red;
+}
+
+.password-error-message,
+.confirm-password-error-message {
+  color: red;
+  font-size: 0.875em;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
+
+.reset-password-btn {
+  width: 40%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  text-align: center;
+  margin-left: 32%;
+}
+
 
 
 

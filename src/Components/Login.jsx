@@ -93,7 +93,7 @@ function Login({ onClose }) {
               </div>
               <button type="button" className="login-forgot-password" onClick={() => navigate('/forgot')}>Forgot password?</button>
             </div>
-            <button type="submit"  className="login-login-btn" onChange={handleSubmit}>Login</button>
+            <button type="submit" className="login-login-btn">Login</button>
           </form>
         </div>
       </div>
