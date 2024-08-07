@@ -1,8 +1,5 @@
 import React, {  useState } from 'react';
 
-
-
-
 const Form = () => {
     const [preview,setPreview]=useState(false);
     const [count, setCount] = useState(1);
@@ -21,7 +18,6 @@ const Form = () => {
     
         if (num === 0) return 'zero';
     
-        // Helper function to convert a number less than 1000 to words
         const parseGroup = (num) => {
             let str = '';
             const hundreds = Math.floor(num / 100);
@@ -36,7 +32,7 @@ const Form = () => {
             return str.trim();
         };
     
-        let words = '';
+        let words = "";
         let scaleIndex = 0;
         while (num > 0) {
             const chunk = num % 1000;
