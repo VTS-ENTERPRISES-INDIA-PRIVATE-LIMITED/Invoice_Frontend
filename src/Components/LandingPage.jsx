@@ -3,12 +3,14 @@ import { Button, ConfigProvider} from 'antd';
 import { css } from '@emotion/css';
 import { useContext } from 'react';
 import { DownOutlined, SmileOutlined } from '@ant-design/icons';
-import { Dropdown, Space } from 'antd';
+import { Dropdown, Space,FloatButton } from 'antd';
 import Logo from './logo.jpg';
 import Bg from './Bg.png'
 import One from './bg1img.png'
 import Two from './bg2img.png'
 import SVG from './backbg.svg'
+import { Navigate, useNavigate } from "react-router-dom";
+
 const items = [
     {
       key: '1',
@@ -51,6 +53,7 @@ const LandingPage = () => {
       }
     }
   `;
+  const navigate=useNavigate()
 
   return (
     
@@ -92,8 +95,8 @@ const LandingPage = () => {
                     </Space>
                 </a>
             </Dropdown>
-                <ConfigProvider button={{className: linearGradientButton,}}>
-                <Button type="primary" size="large">Create Invoice</Button>
+                <ConfigProvider button={{className: linearGradientButton}}>
+                <Button type="primary" size="large" onClick={()=>navigate('/login')}>Create Invoice</Button>
                 </ConfigProvider>
             </div>
         </div>
@@ -101,13 +104,13 @@ const LandingPage = () => {
         <div className='Landing-body'>
                 <h1>Online Invoice Generator</h1>
                 <p style={{fontSize:"21px",fontWeight:"bold",margin:"20px"}}>Create & download invoices for free</p>
-                <button>Create Free Invoice Now</button>
+                <button onClick={()=>navigate('/dashboard')}>Create Free Invoice Now</button>
                 <div className='svgimg'>
                     {/* <img style={{width:"100%"}} src={SVG} alt="" /> */}
                     <img className='bgimg' src={Bg} alt="" />
                 </div>
                 
-                <button>Create Free Invoice Now</button>
+                <button onClick={()=>navigate('/dashboard')}>Create Free Invoice Now</button>
                 <div style={{display:"flex",width:"70vw",justifyContent:"space-between",alignItems:"center",marginTop:"50px"}}>
                     <div style={{display:"flex",flexDirection:"column", width:"30vw"}}>
                         <h2>Brand your invoices with your customized business logo for free</h2>
@@ -141,7 +144,7 @@ With this free invoice maker, you can build great-looking PDF invoices from scra
                     margin:"30px 0px",}}>
                     <p>Contact Us</p>
                     <a href="#">contact@vtsenterprises.com</a>
-                    <button>Create Free Invoice Now</button>
+                    <button onClick={()=>navigate('/dashboard')}>Create Free Invoice Now</button>
                 </div>
                 <hr style={{width:"100%"}}/>
                 <div style={{
@@ -159,6 +162,7 @@ With this free invoice maker, you can build great-looking PDF invoices from scra
                     <p>Open Account</p>
                 </div>
         </div>
+        <FloatButton.BackTop />
     </div>
   )
 }

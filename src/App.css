@@ -1,3 +1,17 @@
+.App {
+  text-align: center;
+}
+
+.open-modal-btn {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: rgb(255, 255, 255);
+  border: none;
+  cursor: pointer;
+}
+
+
+
 /* body{
   font-family:"Trebuchet MS", Helvetica, sans-serif;
 } */
@@ -470,6 +484,241 @@ th {
 #billing-address,
 #customer-name {
   word-wrap: break-word;
+}
+
+
+
+
+
+
+
+
+
+
+
+/*login css*/
+.login-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(95, 95, 95, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-modal {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 350px;
+  position: relative;
+}
+
+.login-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+.login-modal-content {
+  text-align: center;
+}
+
+.login-modal-logo {
+  width: 100px;
+  margin-bottom: 20px;
+}
+
+.login-modal-content h2 {
+  margin-bottom: 10px;
+}
+
+.login-form-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.login-form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.login-form-group input {
+  width: 90%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.login-form-group input.login-error {
+  border: 1px solid red;
+}
+
+.login-error-message {
+  color: red;
+  font-size: 0.875em;
+  margin-top: 5px;
+}
+
+.password-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.password-wrapper input {
+  width:90%;
+}
+
+.toggle-password {
+  position: absolute;
+  left: 85%;
+  cursor: pointer;
+  color: #007bff;
+  font-size: 30px;
+}
+
+.login-form-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.login-remember-me {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.login-remember-me input {
+  margin-right: 5px;
+}
+
+.login-forgot-password {
+  color: #007bff;
+  cursor: pointer;
+  text-decoration: none;
+  margin-bottom: 30px;
+}
+
+.login-login-btn {
+  width: 89%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.login-signup-section {
+  margin-top: 20px;
+}
+
+.login-signup-section a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.login-guest-btn {
+  width: 89%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+
+/*forgot css*/
+.forgot-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(95, 95, 95, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.forgot-modal {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 350px;
+  position: relative;
+}
+
+.forgot-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+.forgot-modal-content {
+  text-align: center;
+}
+
+.forgot-modal-logo {
+  width: 100px;
+  margin-bottom: 20px;
+}
+
+.forgot-modal-content h2 {
+  margin-bottom: 10px;
+}
+
+.forgot-form-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.forgot-form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.forgot-form-group input {
+  width: 90%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.forgot-form-group input.forgot-error {
+  border: 1px solid red;
+}
+
+.forgot-error-message {
+  color: red;
+  font-size: 0.875em;
+  margin-top: 5px;
+}
+
+.forgot-recovery-btn {
+  width: 89%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 
