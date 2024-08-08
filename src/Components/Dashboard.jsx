@@ -60,7 +60,7 @@ const Dashboard = () => {
   }
   return (
     <div style={{display:"flex"}}>
-      <div style={{width: "180px",height:"95vh",backgroundColor:"rgb(0, 21, 41)"}}>
+      <div style={{width: "15vw",height:"100vh",backgroundColor:"rgb(0, 21, 41)"}}>
         {/* <Button type="primary" onClick={toggleCollapsed}
           style={{marginTop: 16}}
         >
@@ -80,7 +80,7 @@ const Dashboard = () => {
     </div >
     {/* Invoices */}
     {invoiceDisplay &&
-    <div style={{marginLeft:"10px",marginTop:"10px",fontSize:"20px",width:"90vw"}}>
+    <div style={{marginLeft:"10px",marginTop:"10px",fontSize:"20px",width:"85vw"}}>
         <div style={{display:"flex"}}>
           <p>Recent Invoices</p>
           <Button style={{marginLeft:"10px"}}  onClick={()=>navigate('/new')} type="primary">+ New</Button>
@@ -96,7 +96,7 @@ const Dashboard = () => {
     }
     {/* Client */}
     {clientDisplay &&
-    <div style={{margin:"20px 20px",padding:"20px 20px", width:"90vw"}}>
+    <div style={{margin:"20px 20px",padding:"20px 20px", width:"85vw"}}>
       <div style={{display:"flex",justifyContent:"space-between"}}>
         <p style={{fontSize:"30px"}}>Clients</p>
         <div style={{display:"flex"}}>
@@ -132,7 +132,7 @@ const Dashboard = () => {
     {/* List of Clients */}
     {clientList && 
     <div style={{margin:"30px"}}>
-      <div style={{display:"flex",width:"80vw",justifyContent:"space-between"}} >
+      <div style={{display:"flex",width:"85vw",justifyContent:"space-between"}} >
         <div style={{display:"flex",justifyContent:"space-evenly",alignItems:"center",borderRadius:"5px", border:"1px solid black",height:"15vh",width:"80vh"}}>
             <img style={{borderRadius:"50px"}} height={"50vh"} width={"50vw"} src={ClientImg} alt="" />
             <div style={{marginLeft:"5px"}}>

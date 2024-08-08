@@ -121,8 +121,6 @@ const LandingPage = () => {
                     </div>
                 </div>
 
-
-
                 <div style={{display:"flex",width:"70vw",justifyContent:"space-between",alignItems:"center",marginTop:"50px"}}>
                     <div>
                         <img src={Two} alt="" />
@@ -163,8 +161,6 @@ With this free invoice maker, you can build great-looking PDF invoices from scra
                     <p>Invoice Templates</p>
                     <p>Open Account</p>
                 </div>
-
-
         </div>
         <FloatButton.BackTop />
     </div>
