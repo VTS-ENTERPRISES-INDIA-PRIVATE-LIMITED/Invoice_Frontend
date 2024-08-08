@@ -251,7 +251,7 @@ const Form = () => {
 
 
         {invoice && 
-
+        <div style={{display:"flex",justifyContent:"center",marginTop:"10px"}}>
         <div className="Invoice-page" id="invoice">
             <div className="top">
                 <div className="top-address">
@@ -397,6 +397,7 @@ const Form = () => {
                 <p>4. Never once sold cannot be taken back or exchanged.</p>
                 <br />
             </div>
+        </div>
         </div>
         }
         </>
