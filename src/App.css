@@ -329,11 +329,12 @@
 /* Invoice CSS */
 
 .Invoice-page {
+  background-color: #fff;
   padding: 50px;
   /* height: 100vh; */
   width: 50vw;
   justify-content: center;
-  /* margin-top: 650px; */
+  margin-top: 20px;
   margin-bottom: 50px;
   box-shadow: 0 0 10px grey;
   border-radius: 10px;

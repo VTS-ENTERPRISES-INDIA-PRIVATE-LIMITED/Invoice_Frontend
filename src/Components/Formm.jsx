@@ -152,9 +152,8 @@ const Form = () => {
     };
 
     return (
-        <>{invoice && 
-        
-            
+        <>
+        {invoice &&   
             <form id="item-form">
                 <div className="form-container">
                     <h2 style={{marginBottom:"30px"}}>Customer Invoice Details Form</h2>
@@ -271,17 +270,12 @@ const Form = () => {
                     </div>
                 </div>
             </form>
-        
         }
 
 
 
-
-
-
-
         {!invoice && 
-        <div style={{display:"flex",justifyContent:"center",marginTop:"10px"}}>
+        <div style={{display:"flex",flexDirection:"column",alignItems:"center",marginTop:"10px"}}>
         <div className="Invoice-page" id="invoice">
             <div className="top">
                 <div className="top-address">
@@ -393,6 +387,7 @@ const Form = () => {
                     </tbody> */}
                 </table>
             </div>
+            <Button style={{marginTop:"10px"}} type='primary'>+Add</Button>
             <div className="total-mrp">
                 <div className="total-mrp-det"> 
                     <div className="adjs">
@@ -495,6 +490,7 @@ const Form = () => {
                 <br />
             </div>
         </div>
+        <Button style={{width:"20vw",marginBottom:"20px"}} type='primary'>Generate Invoice</Button>
         </div>
         }
         </>
