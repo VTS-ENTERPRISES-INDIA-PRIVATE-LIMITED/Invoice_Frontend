@@ -13,12 +13,6 @@ const { TextArea } = Input;
 const Form = () => {
     
     const [fileList, setFileList] = useState([
-        {
-          uid: '-1',
-          name: 'image.png',
-          status: 'done',
-          url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-        },
       ]);
       const onChanged = ({ fileList: newFileList }) => {
         setFileList(newFileList);
@@ -70,6 +64,9 @@ const Form = () => {
         shipping_address: '',
         items: [{ item_name: '', mrp: '', selling_price: '', qty: '' }],
     });
+    const [tableData,settableData]=useState({
+        items: [{item_name: '', mrp: '', selling_price: '', qty: ''}],
+    });
     const numberToWords = (num) => {
         const ones = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
         const teens = ['ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'];
@@ -117,13 +114,23 @@ const Form = () => {
     const cgst = totalAmount * 0.02;
     const sgst = totalAmount * 0.02;
     const totalAmountWithGST=totalAmount + cgst + sgst;
-
+    
+    const addTableRow=()=>{
+        
+        settableData({
+            ...tableData,
+            items:[...tableData.items, {item_name: '', mrp: '', selling_price: '', qty: ''}]
+        })
+        setCount(count + 1);
+        
+    }
     
     const addItemRow = () => {
         setFormData({
             ...formData,
             items: [...formData.items, { item_name: '', mrp: '', selling_price: '', qty: '' }],
         });
+        
         setCount(count + 1);
     };
 
@@ -132,7 +139,11 @@ const Form = () => {
         setFormData({ ...formData, items: newItems });
         setCount(count - 1);
     };
-
+    const removeTableRow=(indexs)=>{
+        const newRow=tableData.items.filter((_, i) => i !== indexs);
+        settableData({...tableData,items:newRow});
+        setCount(count-1);
+    }
     const handleChange = (e) => {
         const { name, value } = e.target;
         if (name.includes('item_name') || name.includes('mrp') || name.includes('selling_price') || name.includes('qty')) {
@@ -242,8 +253,6 @@ const Form = () => {
                                     onChange={handleChange}
                                     variant="outlined" 
                                 />
-
-                                    
                                 </div>
                             </div>
                         ))}
@@ -307,7 +316,7 @@ const Form = () => {
                         onChange={onChanged}
                         onPreview={onPreview}
                     >
-                        {fileList.length < 5 && '+ Upload'}
+                        {fileList.length < 1 && '+ Upload'}
                     </Upload>
                         {/* <img src={process.env.PUBLIC_URL + '/images/logo.png'} alt="Logo Goes Here" /> */}
                         {/* <p style={{fontSize: '100px', color: 'rgb(113, 172, 201)'}}>VTS</p> */}
@@ -356,7 +365,8 @@ const Form = () => {
             <p>Place to Supply: <span style={{fontWeight: 'bold'}}><Input placeholder="Enter Place to Supply" /></span></p>
             <br />
             <div>   
-                <table cellspacing="0" cellpadding="0">
+            <table cellSpacing="0" cellPadding="0">
+                <tbody>
                     <tr className="tabletop">
                         <th>#</th>
                         <th className="tabletop">Item</th>
@@ -365,29 +375,25 @@ const Form = () => {
                         <th className="tabletop">Qty</th>
                         <th className="tabletop" width="100px">Amount</th>
                     </tr>
-                    <tr>
-                        <td></td>
-                        <td><Input placeholder="Enter Item " /></td>
-                        <td><Input placeholder="MRP" /></td>
-                        <td><Input placeholder="Selling Price" /></td>
-                        <td><Input placeholder="Qty" /></td>
-                        <td><Input placeholder="Amount" /></td>
+                    {tableData.items.map((item, indexs) => (
+                    <tr key={indexs}>
+                        <td>{indexs+1}</td>
+                        <td><Input name={`item_name-${indexs}`}  value={item.item_name} placeholder="Enter Item " /></td>
+                        <td><Input name={`mrp-${indexs}`}
+                                    value={item.mrp} placeholder="MRP" /></td>
+                        <td><Input name={`selling_price-${indexs}`}
+                                    value={item.selling_price} placeholder="Selling Price" /></td>
+                        <td><Input name={`qty-${indexs}`}
+                                    value={item.qty} placeholder="Qty" /></td>
+                        <td>'Amount'</td>
+                        <td><Button type="primary" onClick={() => removeTableRow(indexs)}>remove</Button></td>
                     </tr>
-                    {/* <tbody>
-                        {formData.items.map((item, index) => (
-                            <tr key={index}>
-                                <td>{index + 1}</td>
-                                <td>{item.item_name}</td>
-                                <td>₹ {parseFloat(item.mrp).toFixed(2)}</td>
-                                <td>₹ {parseFloat(item.selling_price).toFixed(2)}</td>
-                                <td>{item.qty}</td>
-                                <td>₹ {(parseFloat(item.selling_price) * parseInt(item.qty)).toFixed(2)}</td>
-                            </tr>
-                        ))}
-                    </tbody> */}
-                </table>
+
+                    ))}
+                </tbody>
+            </table>
             </div>
-            <Button style={{marginTop:"10px"}} type='primary'>+Add</Button>
+            <Button style={{marginTop:"10px"}} type='primary' onClick={addTableRow}>+Add</Button>
             <div className="total-mrp">
                 <div className="total-mrp-det"> 
                     <div className="adjs">
@@ -404,7 +410,7 @@ const Form = () => {
                 <div className="hr"></div>
                 <div className="total-mrp-det-light">
                     <div>
-                        <p>GST <Input style={{width:"5vw"}} placeholder="GSTIN" /> :</p>
+                        <p>GST <Input style={{width:"5vw"}} placeholder="GST %" /> :</p>
                         <p>Total Amount with GST:</p>
                     </div>
                     <div>
@@ -472,7 +478,7 @@ const Form = () => {
                         onChange={onChanged}
                         onPreview={onPreview}
                     >
-                        {fileList.length < 5 && '+ Upload'}
+                        {fileList.length < 1 && '+ Upload'}
                     </Upload>
                 </div>
             </div>
