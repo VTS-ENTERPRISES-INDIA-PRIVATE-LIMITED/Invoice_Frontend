@@ -1,12 +1,42 @@
 import React, {  useState } from 'react';
 // import { PoweroffOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
+import { InboxOutlined } from '@ant-design/icons';
+import { message, Upload } from 'antd';
 // import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { Slider } from 'antd';
+import { Slider,Input } from 'antd';
+import ImgCrop from 'antd-img-crop';
+const { TextArea } = Input;
+
 
 const Form = () => {
-
+    
+    const [fileList, setFileList] = useState([
+        {
+          uid: '-1',
+          name: 'image.png',
+          status: 'done',
+          url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+        },
+      ]);
+      const onChanged = ({ fileList: newFileList }) => {
+        setFileList(newFileList);
+      };
+      const onPreview = async (file) => {
+        let src = file.url;
+        if (!src) {
+          src = await new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file.originFileObj);
+            reader.onload = () => resolve(reader.result);
+          });
+        }
+        const image = new Image();
+        image.src = src;
+        const imgWindow = window.open(src);
+        imgWindow?.document.write(image.outerHTML);
+      };
     //Antd
     const [loadings, setLoadings] = useState([]);
   const enterLoading = (index) => {
@@ -122,7 +152,7 @@ const Form = () => {
     };
 
     return (
-        <>{!invoice && 
+        <>{invoice && 
         
             
             <form id="item-form">
@@ -250,21 +280,43 @@ const Form = () => {
 
 
 
-        {invoice && 
+        {!invoice && 
         <div style={{display:"flex",justifyContent:"center",marginTop:"10px"}}>
         <div className="Invoice-page" id="invoice">
             <div className="top">
                 <div className="top-address">
                     <h3 style={{color: 'rgb(35, 26, 167)', margin: '20px 0px 5px 0px'}}>TAX INVOICE</h3>
-                    <h2 style={{margin: '0px 0px 5px 0px'}}>VTS ENTERPRISES</h2>
-                    <h5 style={{margin: '0px 0px 5px 0px'}}>GSTIN 36AACCG0527D2Z4</h5>
-                    <p>19 Washington Square N<br/>New York,<br/>NY 10011,<br/>USA</p>
+                    {/* <h2 style={{margin: '0px 0px 5px 0px'}}>VTS ENTERPRISES</h2> */}
+                    <TextArea placeholder="Enter Company Name" autoSize />
+                        <div
+                            style={{
+                            margin: '24px 0',
+                            }}
+                        />
+                    {/* <h5 style={{margin: '0px 0px 5px 0px'}}>GSTIN 36AACCG0527D2Z4</h5>
+                    <p>19 Washington Square N<br/>New York,<br/>NY 10011,<br/>USA</p> */}
+                    <TextArea
+                        placeholder="Company Address"
+                        autoSize={{
+                        minRows: 2,
+                        maxRows: 6,
+                        }}
+                    />                
                 </div>
                 <div className="top-logo">
                     <h5 style={{color: 'rgb(126, 121, 114)'}}>ORIGINAL FOR RECIPIENT</h5>
-                    <div style={{display: 'flex'}}>
-                        <img src={process.env.PUBLIC_URL + '/images/logo.png'} alt="Logo Goes Here" />
-                        <p style={{fontSize: '100px', color: 'rgb(113, 172, 201)'}}>VTS</p>
+                    <div style={{display: 'flex',justifyContent:"flex-end",width:"25vw",height:"20vh"}}>
+                    <Upload
+                        action="https://660d2bd96ddfa2943b33731c.mockapi.io/api/upload"
+                        listType="picture-card"
+                        // fileList={fileList}
+                        onChange={onChanged}
+                        onPreview={onPreview}
+                    >
+                        {fileList.length < 5 && '+ Upload'}
+                    </Upload>
+                        {/* <img src={process.env.PUBLIC_URL + '/images/logo.png'} alt="Logo Goes Here" /> */}
+                        {/* <p style={{fontSize: '100px', color: 'rgb(113, 172, 201)'}}>VTS</p> */}
                     </div>
                 </div>
             </div>
@@ -272,26 +324,42 @@ const Form = () => {
             <br />
             <div className="addresses">
                 <div>
-                    <p>Invoice #: <span style={{fontWeight: 'bold'}}>INV-14</span></p>
+                    <p>Invoice #: <span><Input placeholder="Enter Invoice Number" /></span></p>
+                    {/* <p>Invoice #: <span style={{fontWeight: 'bold'}}>INV-14</span></p> */}
+                    
                     <br />
                     <p>Customer Details:</p>
-                    <p style={{fontWeight: 'bold'}} id='customer-name'>{formData.customer_name}</p>
+                    {/* <p style={{fontWeight: 'bold'}} id='customer-name'>{formData.customer_name}</p> */}
+                    <Input placeholder="Enter Customer Name" />
                 </div>
                 <div>
-                    <p>Invoice Date: <span style={{fontWeight: 'bold'}}>05 Aug 2024</span></p>
+                    <p>Invoice Date: <span style={{fontWeight: 'bold'}}><Input placeholder="Invoice Date" /></span></p>
                     <br />
                     <p style={{fontWeight: 'bold'}} id='billing-address'>Billing address:</p>
-                    <p>{formData.billing_address}</p>
+                    {/* <p>{formData.billing_address}</p> */}
+                    <TextArea
+                        placeholder="Enter Billing Address"
+                        autoSize={{
+                        minRows: 2,
+                        maxRows: 6,
+                        }}
+                    />
                 </div>
                 <div>
-                    <p>&nbsp;</p>
-                    <br />
-                    <p style={{fontWeight: 'bold'}} id='shipping-address' >Shipping address:</p>
-                    <p>{formData.shipping_address}</p>
+
+                    <p style={{fontWeight: 'bold',marginTop:"75px"}} id='shipping-address' >Shipping address:</p>
+                    {/* <p>{formData.shipping_address}</p> */}
+                    <TextArea
+                        placeholder="Enter Shipping Address"
+                        autoSize={{
+                        minRows: 2,
+                        maxRows: 6,
+                        }}
+                    />
                 </div>
             </div>
             <br />
-            <p>Place to Supply: <span style={{fontWeight: 'bold'}}>27-MAHARASTRA</span></p>
+            <p>Place to Supply: <span style={{fontWeight: 'bold'}}><Input placeholder="Enter Place to Supply" /></span></p>
             <br />
             <div>   
                 <table cellspacing="0" cellpadding="0">
@@ -303,7 +371,15 @@ const Form = () => {
                         <th className="tabletop">Qty</th>
                         <th className="tabletop" width="100px">Amount</th>
                     </tr>
-                    <tbody>
+                    <tr>
+                        <td></td>
+                        <td><Input placeholder="Enter Item " /></td>
+                        <td><Input placeholder="MRP" /></td>
+                        <td><Input placeholder="Selling Price" /></td>
+                        <td><Input placeholder="Qty" /></td>
+                        <td><Input placeholder="Amount" /></td>
+                    </tr>
+                    {/* <tbody>
                         {formData.items.map((item, index) => (
                             <tr key={index}>
                                 <td>{index + 1}</td>
@@ -314,7 +390,7 @@ const Form = () => {
                                 <td>₹ {(parseFloat(item.selling_price) * parseInt(item.qty)).toFixed(2)}</td>
                             </tr>
                         ))}
-                    </tbody>
+                    </tbody> */}
                 </table>
             </div>
             <div className="total-mrp">
@@ -333,13 +409,11 @@ const Form = () => {
                 <div className="hr"></div>
                 <div className="total-mrp-det-light">
                     <div>
-                        <p>CGST 2.0%:</p>
-                        <p>SGST 2.0%:</p>
+                        <p>GST <Input style={{width:"5vw"}} placeholder="GSTIN" /> :</p>
                         <p>Total Amount with GST:</p>
                     </div>
                     <div>
                         <p>₹ {cgst.toFixed(2)}</p>
-                        <p>₹ {sgst.toFixed(2)}</p>
                         <p>₹ {totalAmountWithGST.toFixed(2)}</p>
                     </div>
                 </div>
@@ -353,35 +427,58 @@ const Form = () => {
             <div style={{height: '1.5px', width: '100%', background: 'blue'}}></div>
             <br />
             <div className="footer-price">
-                <p>Amount Payable: ₹ <span>{totalAmountWithGST.toFixed(2)}</span></p>
+                <p>Amount Payable :  ₹<span>{totalAmountWithGST.toFixed(2)}</span></p>
             </div>
             <div className="stamp">
                 <div className="qr-price"> 
-                    <div>
+                    {/* <div style={{marginRight:"10px"}}>
                         <p style={{fontWeight: 'bold'}}>Pay using UPI:</p>
                         <img style={{height: '100px', width: '100px'}} src={process.env.PUBLIC_URL + '/images/temp-qr.png'} alt="QR" />
-                    </div>
-                    <div>
+                    </div> */}
+                    <div style={{width:"20vw"}}>
+                        <div>
                         <p style={{fontWeight: 'bold'}}>Bank Details:</p>
-                        <p>Bank:</p>
-                        <p>Account #:</p>
-                        <p>IFSC:</p>
-                        <p>Branch:</p>
+                        </div>
+                        <div style={{display:"flex",flexDirection:"column",justifyContent:"center",textAlign:"end"}}>
+                            <div style={{display:"flex",justifyContent:"space-between"}}>
+                            <p>Bank Name:</p>
+                            <p style={{fontWeight: 'bold'}}><Input placeholder="Enter Bank Name" /></p>
+                            </div>
+                            <div style={{display:"flex",justifyContent:"space-between"}}>
+                            <p>Account # :</p>
+                            <p style={{fontWeight: 'bold'}}><Input placeholder="Enter Account Number" /></p>
+                            </div>
+                            <div style={{display:"flex",justifyContent:"space-between"}}>
+                            <p>IFSC :</p>
+                            <p style={{fontWeight: 'bold'}}><Input placeholder="Enter IFSC" /></p>
+                            </div>
+                            <div style={{display:"flex",justifyContent:"space-between"}}>
+                            <p>Branch :</p>
+                            <p style={{fontWeight: 'bold'}}><Input placeholder="Enter Branch" /></p>
+                            </div>
+                        </div>
+                    </div>
+                    {/* <div>
                     </div>
                     <div>
                         <p>&nbsp;</p>
-                        <p style={{fontWeight: 'bold'}}>Yes Bank</p>
-                        <p style={{fontWeight: 'bold'}}>45568437589</p>
-                        <p style={{fontWeight: 'bold'}}>YES7548</p>
-                        <p style={{fontWeight: 'bold'}}>Kodihalli</p>
-                    </div>
+                    </div> */}
                 </div>
                 <div style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-end'}}>
                     <p>&nbsp;</p>
                     <p>&nbsp;</p>
-                    <p style={{fontWeight: 'bold', color: '#767070'}}>For VTS</p>
+                    <p style={{fontWeight: 'bold', color: '#767070'}}>For <Input style={{width:"10vw"}} placeholder="Recepient Company" /></p>
                     <br />
-                    <img height="100px" width="110px" src={process.env.PUBLIC_URL + '/images/signature.png'} alt="Stamp" />
+                    {/* <img height="100px" width="110px" src={process.env.PUBLIC_URL + '/images/signature.png'} alt="Stamp" /> */}
+                    <Upload
+                        action="https://660d2bd96ddfa2943b33731c.mockapi.io/api/upload"
+                        listType="picture-card"
+                        // fileList={fileList}
+                        onChange={onChanged}
+                        onPreview={onPreview}
+                    >
+                        {fileList.length < 5 && '+ Upload'}
+                    </Upload>
                 </div>
             </div>
             <div>
