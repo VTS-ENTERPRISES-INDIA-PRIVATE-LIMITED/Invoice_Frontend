@@ -6,10 +6,12 @@ import Formm from './Components/Formm'
 import './App.css';
 import LandingPage from './Components/LandingPage';
 import Dashboard from './Components/Dashboard';
-
+// import colorsdata from './assets'
 function App() {
   return (
+  
     <BrowserRouter>
+    {/* <h1 className='colorcolorwhatcolor'>Hello World</h1> */}
     <Routes>
       <Route path='/' element={<LandingPage/>}/>
       <Route path="/login" element={<Login/>} />
