@@ -116,6 +116,9 @@ const Form = () => {
         originalValues.push(input.outerHTML);
         const span = document.createElement('span');
         span.textContent = input.value;
+        span.style.display = 'inline-block'; 
+        span.style.width = input.clientWidth + 'px'; 
+        span.style.height = input.clientHeight + 'px'; 
         input.replaceWith(span);
     });
 
