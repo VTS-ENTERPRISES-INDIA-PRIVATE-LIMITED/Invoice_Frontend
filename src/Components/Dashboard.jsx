@@ -38,6 +38,7 @@ const Dashboard = () => {
 
   const [invoiceDisplay,setinvoiceDisplay]=useState(true)
   const [clientDisplay,setclientDisplay]=useState(false)
+  const [clientList,setclientList]=useState(false)
 
   
         const [collapsed, setCollapsed] = useState(false);
@@ -59,7 +60,7 @@ const Dashboard = () => {
   }
   return (
     <div style={{display:"flex"}}>
-      <div style={{width: "20vw",height:"95vh",backgroundColor:"rgb(0, 21, 41)"}}>
+      <div style={{width: "180px",height:"95vh",backgroundColor:"rgb(0, 21, 41)"}}>
         {/* <Button type="primary" onClick={toggleCollapsed}
           style={{marginTop: 16}}
         >
@@ -79,7 +80,7 @@ const Dashboard = () => {
     </div >
     {/* Invoices */}
     {invoiceDisplay &&
-    <div style={{marginLeft:"10px",marginTop:"10px",fontSize:"20px"}}>
+    <div style={{marginLeft:"10px",marginTop:"10px",fontSize:"20px",width:"90vw"}}>
         <div style={{display:"flex"}}>
           <p>Recent Invoices</p>
           <Button style={{marginLeft:"10px"}}  onClick={()=>navigate('/new')} type="primary">+ New</Button>
@@ -110,7 +111,11 @@ const Dashboard = () => {
         </div>
       </div>
       <div>
-        <div style={{display:"flex",justifyContent:"space-evenly",alignItems:"center",marginTop:"20px",borderRadius:"5px", border:"1px solid black",height:"15vh",width:"40vh"}}>
+      {/* style={{display:"flex",justifyContent:"center",alignContent:"center",flexWrap:"wrap",background:"none",height:"19vh",cursor:"pointer",border:"none"}} */}
+        <button style={{display:"flex",justifyContent:"space-evenly",alignItems:"center",marginTop:"20px",borderRadius:"9px", border:"1px solid grey",height:"15vh",width:"40vh",cursor:"pointer",background:"none"}} onClick={()=>{setclientDisplay(false)
+          setclientList(true)
+        }}>
+        {/* <div style={{display:"flex",justifyContent:"space-evenly",alignItems:"center",marginTop:"20px",borderRadius:"5px", border:"1px solid black",height:"15vh",width:"40vh"}}> */}
           <img style={{borderRadius:"50px"}} height={"50vh"} width={"50vw"} src={ClientImg} alt="" />
           <div style={{marginLeft:"5px"}}>
             <h3 style={{padding:"0px",margin:"0px"}}>Client Name</h3>
@@ -118,10 +123,32 @@ const Dashboard = () => {
             <p>Email:</p>
             <p>Country:</p>
           </div>
-            
 
-        </div>
+        {/* </div> */}
+        </button>
       </div> 
+    </div>
+    }
+    {/* List of Clients */}
+    {clientList && 
+    <div style={{margin:"30px"}}>
+      <div style={{display:"flex",width:"80vw",justifyContent:"space-between"}} >
+        <div style={{display:"flex",justifyContent:"space-evenly",alignItems:"center",borderRadius:"5px", border:"1px solid black",height:"15vh",width:"80vh"}}>
+            <img style={{borderRadius:"50px"}} height={"50vh"} width={"50vw"} src={ClientImg} alt="" />
+            <div style={{marginLeft:"5px"}}>
+              <h3 style={{padding:"0px",margin:"0px"}}>Client Name</h3>
+              <p>Company Name:</p>
+              <p>Email:</p>
+              <p>Country:</p>
+            </div>
+            <div style={{margin:"20px",width:"10vw",display:"flex ",justifyContent:"space-between"}}>
+              <Button type='primary'>Edit</Button>
+              <Button type="primary" danger>Delete</Button>
+            </div>
+          </div>
+      </div>
+      <br />
+      <hr />
     </div>
     }
     </div>
