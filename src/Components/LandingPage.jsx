@@ -96,7 +96,7 @@ const LandingPage = () => {
                 </a>
             </Dropdown>
                 <ConfigProvider button={{className: linearGradientButton}}>
-                <Button type="primary" size="large" onClick={()=>navigate('/login')}>Create Invoice</Button>
+                <Button type="primary" size="large" onClick={()=>navigate('/login')}>Sign Up</Button>
                 </ConfigProvider>
             </div>
         </div>
