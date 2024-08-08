@@ -6,6 +6,7 @@ import TextField from '@mui/material/TextField';
 import { Slider, Input } from 'antd';
 import ImgCrop from 'antd-img-crop';
 import html2canvas from 'html2canvas';
+import axios from "axios"
 import jsPDF from 'jspdf';
 const { TextArea } = Input;
 
@@ -122,7 +123,7 @@ const Form = () => {
         input.replaceWith(span);
     });
 
-    html2canvas(document.querySelector('#invoice'), { useCORS: true, scale: 2 }).then((canvas) => {
+    html2canvas(document.querySelector('#invoice'), { useCORS: true, scale: 1.5 }).then((canvas) => {
         const imgData = canvas.toDataURL('image/png');
         const pdf = new jsPDF('p', 'pt', 'a4');
         
@@ -141,6 +142,26 @@ const Form = () => {
         }
 
         pdf.save('invoice.pdf');
+        const pdfBlob = pdf.output("blob");
+ 
+    const formData = new FormData();
+    formData.append("file", pdfBlob, "invoice.pdf");
+    formData.append("upload_preset", "invoices");
+   
+    try {
+      axios.post(
+        "https://api.cloudinary.com/v1_1/dlo7urgnj/auto/upload",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      )
+      .then(res=>console.log(res.data.secure_url))
+      .catch(err=>console.log(err))
+      
+
 
         // Restore the Add Item button, "Remove" buttons, and input fields
         if (addButton) addButton.style.display = 'block';
@@ -154,8 +175,12 @@ const Form = () => {
         //     const tempDiv = document.createElement('div');
         //     tempDiv.innerHTML = originalValues[index];
         //     span.replaceWith(tempDiv.firstChild);
-        // });
-    });
+      
+      }
+      catch(err){
+        console.log(err)
+      }
+    })
 };
 
 
@@ -245,9 +270,9 @@ const Form = () => {
                 <tr key={index}>
                   <td>{index + 1}</td>
                   <td><Input name="itemName" value={item.itemName} placeholder="Enter Item" onChange={(e) => handleItemChange(e, index)} /></td>
-                  <td><Input name="mrp" value={item.mrp} placeholder="MRP" onChange={(e) => handleItemChange(e, index)} /></td>
-                  <td><Input name="sellingPrice" value={item.sellingPrice} placeholder="Selling Price" onChange={(e) => handleItemChange(e, index)} /></td>
-                  <td><Input name="qty" value={item.qty} placeholder="Qty" onChange={(e) => handleItemChange(e, index)} /></td>
+                  <td><Input type="number" name="mrp" value={item.mrp} placeholder="MRP" onChange={(e) => handleItemChange(e, index)} /></td>
+                  <td><Input type="number" name="sellingPrice" value={item.sellingPrice} placeholder="Selling Price" onChange={(e) => handleItemChange(e, index)} /></td>
+                  <td><Input type="number" name="qty" value={item.qty} placeholder="Qty" onChange={(e) => handleItemChange(e, index)} /></td>
                   <td>{(parseFloat(item.sellingPrice || 0) * parseFloat(item.qty || 0)).toFixed(2)}</td>
                   <td><Button type="primary" onClick={() => removeTableRow(index)}>remove</Button></td>
                 </tr>
@@ -267,7 +292,7 @@ const Form = () => {
           <div className="hr"></div>
           <div className="total-mrp-det-light">
             <div>
-              <p>GST <Input name="gstPercentage" style={{ width: "5vw" }} placeholder="GST %" value={formData.gstPercentage} onChange={handleChange} /> :</p>
+              <p>GST <Input type="number" name="gstPercentage" style={{ width: "5vw" }} placeholder="GST %" value={formData.gstPercentage} onChange={handleChange} /> :</p>
               <p>Total Amount with GST: {totalAmountWithGST.toFixed(2)}</p>
             </div>
           </div>
