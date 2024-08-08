@@ -7,14 +7,17 @@ import { message, Upload } from 'antd';
 import TextField from '@mui/material/TextField';
 import { Slider,Input } from 'antd';
 import ImgCrop from 'antd-img-crop';
+import axios from 'axios';
 const { TextArea } = Input;
+
 
 
 const Form = () => {
     
-    const [fileList, setFileList] = useState([
-      ]);
-      const onChanged = ({ fileList: newFileList }) => {
+    const [fileList, setFileList] = useState([]);
+    const [uploadDisabled, setUploadDisabled] = useState(false); // State to control upload availability
+
+    const onChanged = ({ fileList: newFileList }) => {
         setFileList(newFileList);
       };
       const onPreview = async (file) => {
@@ -31,6 +34,28 @@ const Form = () => {
         const imgWindow = window.open(src);
         imgWindow?.document.write(image.outerHTML);
       };
+    const customRequest = async ({ file, onSuccess, onError }) => {
+        const formDatas = new FormData();
+        formDatas.append('file', file);
+        formDatas.append('upload_preset', 'Evansikings'); // Replace with your upload preset
+    
+        try {
+            const response = await axios.post(
+                'https://api.cloudinary.com/v1_1/dzvs1vtzw/image/upload', // Replace with your Cloudinary cloud name
+                formDatas
+            );
+            console.log('Upload response:', response.data); // Log the response from Cloudinary
+            onSuccess(response.data, file);
+            setFileList([...fileList, { url: response.data.secure_url }]);
+            setUploadDisabled(true);
+            message.success('Upload successful!');
+        } catch (error) {
+            console.error('Upload error:', error.response?.data || error.message); // Log the error response or message
+            onError(error);
+            message.error('Upload failed.');
+        }
+    };
+    
     //Antd
     const [loadings, setLoadings] = useState([]);
   const enterLoading = (index) => {
@@ -310,14 +335,16 @@ const Form = () => {
                     <h5 style={{color: 'rgb(126, 121, 114)'}}>ORIGINAL FOR RECIPIENT</h5>
                     <div style={{display: 'flex',justifyContent:"flex-end",width:"25vw",height:"20vh"}}>
                     <Upload
-                        action="https://660d2bd96ddfa2943b33731c.mockapi.io/api/upload"
+                        customRequest={customRequest}
                         listType="picture-card"
-                        // fileList={fileList}
+                        fileList={fileList}
                         onChange={onChanged}
                         onPreview={onPreview}
+                        // disabled={uploadDisabled}
                     >
-                        {fileList.length < 1 && '+ Upload'}
-                    </Upload>
+                         {fileList.length < 1 && '+ Upload'}
+                
+                </Upload>
                         {/* <img src={process.env.PUBLIC_URL + '/images/logo.png'} alt="Logo Goes Here" /> */}
                         {/* <p style={{fontSize: '100px', color: 'rgb(113, 172, 201)'}}>VTS</p> */}
                     </div>
@@ -472,14 +499,19 @@ const Form = () => {
                     <br />
                     {/* <img height="100px" width="110px" src={process.env.PUBLIC_URL + '/images/signature.png'} alt="Stamp" /> */}
                     <Upload
-                        action="https://660d2bd96ddfa2943b33731c.mockapi.io/api/upload"
+                        customRequest={customRequest}
                         listType="picture-card"
-                        // fileList={fileList}
+                        fileList={fileList}
                         onChange={onChanged}
                         onPreview={onPreview}
-                    >
-                        {fileList.length < 1 && '+ Upload'}
-                    </Upload>
+                        disabled={uploadDisabled}
+                        >
+                        {!uploadDisabled && fileList.length < 1 && (
+                        <div>
+                             Upload
+                        </div>
+                    )}
+                </Upload>
                 </div>
             </div>
             <div>
