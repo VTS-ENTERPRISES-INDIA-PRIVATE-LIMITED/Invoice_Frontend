@@ -147,4 +147,5 @@ function Forgot() {
     </div>
   );
 }
+
 export default Forgot;
