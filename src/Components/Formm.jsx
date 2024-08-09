@@ -150,37 +150,51 @@ const Form = () => {
    
     try {
       axios.post(
-        "https://api.cloudinary.com/v1_1/dlo7urgnj/auto/upload",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
+          "https://api.cloudinary.com/v1_1/dlo7urgnj/auto/upload",
+          formData,
+          {
+              headers: {
+                  "Content-Type": "multipart/form-data",
+              },
+          }
       )
-      .then(res=>console.log(res.data.secure_url))
-      .catch(err=>console.log(err))
-      
+      .then(res => {
+          const cloudinaryUrl = res.data.secure_url;
 
+          axios.post(
+              "https://backend-endpoint.com/api/uploadInvoice", 
+              { url: cloudinaryUrl },
+              {
+                  headers: {
+                      "Content-Type": "application/json",
+                  },
+              }
+          )
+          .then(response => {
+              console.log('URL sent to backend:', response.data);
+          })
+          .catch(error => {
+              console.error('Error', error);
+          });
+      })
+      .catch(err => console.log(err));
 
-        // Restore the Add Item button, "Remove" buttons, and input fields
-        if (addButton) addButton.style.display = 'block';
-        removeButtons.forEach(button => {
-            button.style.display = 'block';
-        });
+      if (addButton) addButton.style.display = 'block';
+      removeButtons.forEach(button => {
+          button.style.display = 'block';
+      });
 
-        // Revert the spans back to input fields
-        // const spans = document.querySelectorAll('#invoice span');
-        // spans.forEach((span, index) => {
-        //     const tempDiv = document.createElement('div');
-        //     tempDiv.innerHTML = originalValues[index];
-        //     span.replaceWith(tempDiv.firstChild);
-      
-      }
-      catch(err){
-        console.log(err)
-      }
-    })
+      // Revert the spans back to input fields
+      // const spans = document.querySelectorAll('#invoice span');
+      // spans.forEach((span, index) => {
+      //     const tempDiv = document.createElement('div');
+      //     tempDiv.innerHTML = originalValues[index];
+      //     span.replaceWith(tempDiv.firstChild);
+
+  } catch (err) {
+      console.log(err);
+  }
+});
 };
 
 
