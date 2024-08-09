@@ -6,6 +6,7 @@ import Formm from './Components/Formm'
 import './App.css';
 import LandingPage from './Components/LandingPage';
 import Dashboard from './Components/Dashboard';
+import EditClientForm from './Components/EditClientForm';
 // import colorsdata from './assets'
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Route path="/new" element={<Formm/>} />
       <Route path="/forgot" element={<Forgot/>} />
       <Route path="/dashboard" element={<Dashboard/>} />
+      <Route path="/editClient" element={<EditClientForm/>}/>
     </Routes>
     </BrowserRouter>
   );

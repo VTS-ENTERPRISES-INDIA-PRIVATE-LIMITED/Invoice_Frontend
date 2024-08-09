@@ -11,6 +11,7 @@ import {
 } from '@ant-design/icons';
 import { Button, Menu,Dropdown,Input, Space } from 'antd';
 import ClientImg from './14b9c2d3fc8e930d59126591c1fcbbfd.png'
+import { display } from 'html2canvas/dist/types/css/property-descriptors/display';
 
 
 
@@ -61,7 +62,7 @@ const Dashboard = () => {
     
   }
   return (
-    <div style={{display:"flex"}}>
+    <div style={{display:"flex",backgroundColor:"rgb(232, 232, 232)"}}>
       <div style={{width: "15vw",height:"100vh",backgroundColor:"rgb(0, 21, 41)"}}>
         {/* <Button type="primary" onClick={toggleCollapsed}
           style={{marginTop: 16}}
@@ -135,7 +136,8 @@ const Dashboard = () => {
     {clientList && 
     <div style={{margin:"30px"}}>
       <div style={{display:"flex",width:"85vw",justifyContent:"space-between"}} >
-        <div style={{display:"flex",justifyContent:"space-evenly",alignItems:"center",borderRadius:"5px", border:"1px solid black",height:"15vh",width:"80vh"}}>
+        <div style={{display:"flex",justifyContent:"space-evenly",alignItems:"center",borderRadius:"5px", border:"1px solid black",height:"15vh",width:"80vw"}}>
+          <div style={{display:"flex"}}>
             <img style={{borderRadius:"50px"}} height={"50vh"} width={"50vw"} src={ClientImg} alt="" />
             <div style={{marginLeft:"5px"}}>
               <h3 style={{padding:"0px",margin:"0px"}}>Client Name</h3>
@@ -143,8 +145,9 @@ const Dashboard = () => {
               <p>Email:</p>
               <p>Country:</p>
             </div>
+          </div>
             <div style={{margin:"20px",width:"10vw",display:"flex ",justifyContent:"space-between"}}>
-              <Button type='primary'>Edit</Button>
+              <Button type='primary' onClick={()=>navigate('/editClient')} >Edit</Button>
               <Button type="primary" danger>Delete</Button>
             </div>
           </div>

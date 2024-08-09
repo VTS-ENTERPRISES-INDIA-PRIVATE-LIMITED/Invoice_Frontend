@@ -8,7 +8,6 @@ import ImgCrop from 'antd-img-crop';
 import html2canvas from 'html2canvas';
 import axios from "axios"
 import jsPDF from 'jspdf';
-import axios from 'axios';
 const { TextArea } = Input;
 
 const Form = () => {
