@@ -1,13 +1,8 @@
 import React, { useState } from 'react';
 import { Navigate, useNavigate } from "react-router-dom";
 import {
-  AppstoreOutlined,
   ContainerOutlined,
   DesktopOutlined,
-  MailOutlined,
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  PieChartOutlined,
 } from '@ant-design/icons';
 import { Button, Menu,Dropdown,Input, Space } from 'antd';
 import ClientImg from './14b9c2d3fc8e930d59126591c1fcbbfd.png'
@@ -15,7 +10,6 @@ import client2Img from './logo.jpg'
 import { Form, Select, Upload, Card, Row, Col } from 'antd';
 import { InboxOutlined } from '@ant-design/icons';
 import { Table,DatePicker } from 'antd';
-import { PlusOutlined, FilePdfOutlined, DeleteOutlined, EditOutlined } from '@ant-design/icons';
 
 const { RangePicker } = DatePicker;
 
@@ -127,10 +121,6 @@ const Dashboard = () => {
   const [editClient,seteditClient]=useState(false)
 
   
-        const [collapsed, setCollapsed] = useState(false);
-  const toggleCollapsed = () => {
-    setCollapsed(!collapsed);
-  };
   const changeState=(e)=>{
     const temp=parseInt(e.key)
     console.log(typeof(temp))
@@ -163,7 +153,7 @@ const Dashboard = () => {
           items={items}
           onClick={(e)=>changeState(e)}
         />
-    </div >
+      </div >
     {/* Invoices */}
     {invoiceDisplay &&
     <div style={{paddingLeft:"10px",padding:"30px",fontSize:"20px",width:"80%"}}>
@@ -172,8 +162,6 @@ const Dashboard = () => {
           <Button style={{marginLeft:"10px"}}  onClick={()=>navigate('/new')} type="primary">+ New</Button>
         </div>
         <div className="recent-invoices">
-        {/* <h2>Recent invoices</h2> */}
-        {/* <Button type="primary" icon={<PlusOutlined />}>New</Button> */}
         <Row style={{width:"100vw",marginTop:"20px"}}>
           {recentInvoices.map(invoice => (
             <Col span={5} key={invoice.id}>
@@ -188,9 +176,6 @@ const Dashboard = () => {
           ))}
         </Row>
       </div>
-        {/* <div style={{display:"flex",height:"20vh", width:"78vw",justifyContent:"center",alignItems:"center"}}>
-          <p>Nothing to see here yet. Click 'New' above to get started!</p>
-        </div> */}
         <hr />
         <div>
           <p style={{fontSize:"30px"}}>All invoices</p>
@@ -204,7 +189,6 @@ const Dashboard = () => {
           <Search placeholder="Search" style={{ width: 200, marginRight: 16 }} />
           <RangePicker placeholder={['Start Issue Date', 'End Issue Date']} />
           <Button type="default" style={{ marginLeft: 16 }}>Reset</Button>
-          {/* <Button type="default" style={{ marginLeft: 16 }}>Hide filters</Button> */}
         </div>
         <Table columns={columns} dataSource={data} pagination={false} style={{ marginTop: 16 }} />
       </div>
@@ -234,11 +218,9 @@ const Dashboard = () => {
       <div style={{display:"flex",justifyContent:"space-evenly",width:"100%"}}>
         {/* 1 */}
         <div>
-        {/* style={{display:"flex",justifyContent:"center",alignContent:"center",flexWrap:"wrap",background:"none",height:"19vh",cursor:"pointer",border:"none"}} */}
           <button style={{display:"flex",justifyContent:"space-evenly",backgroundColor:"white",alignItems:"center",marginTop:"20px",borderRadius:"9px", border:"0px solid grey",height:"15vh",width:"40vh",cursor:"pointer",background:"white"}} onClick={()=>{setclientDisplay(false)
             setclientList(true)
           }}>
-          {/* <div style={{display:"flex",justifyContent:"space-evenly",alignItems:"center",marginTop:"20px",borderRadius:"5px", border:"1px solid black",height:"15vh",width:"40vh"}}> */}
             <img style={{borderRadius:"50px"}} height={"50vh"} width={"50vw"} src={ClientImg} alt="" />
             <div style={{marginLeft:"5px"}}>
               <h3 style={{padding:"0px",margin:"0px"}}>Client Name</h3>
@@ -247,16 +229,13 @@ const Dashboard = () => {
               <p>Country:</p>
             </div>
 
-          {/* </div> */}
           </button>
         </div> 
         {/* 2 */}
         <div>
-        {/* style={{display:"flex",justifyContent:"center",alignContent:"center",flexWrap:"wrap",background:"none",height:"19vh",cursor:"pointer",border:"none"}} */}
           <button style={{display:"flex",justifyContent:"space-evenly",backgroundColor:"white",alignItems:"center",marginTop:"20px",borderRadius:"9px", border:"0px solid grey",height:"15vh",width:"40vh",cursor:"pointer",background:"white"}} onClick={()=>{setclientDisplay(false)
             setclientList(true)
           }}>
-          {/* <div style={{display:"flex",justifyContent:"space-evenly",alignItems:"center",marginTop:"20px",borderRadius:"5px", border:"1px solid black",height:"15vh",width:"40vh"}}> */}
             <img style={{borderRadius:"50px"}} height={"50vh"} width={"50vw"} src={client2Img} alt="" />
             <div style={{marginLeft:"5px"}}>
               <h3 style={{padding:"0px",margin:"0px"}}>John Dev</h3>
