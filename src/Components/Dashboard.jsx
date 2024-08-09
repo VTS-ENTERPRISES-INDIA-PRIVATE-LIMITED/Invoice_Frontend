@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Navigate, useNavigate } from "react-router-dom";
+import { LogoutOutlined } from '@ant-design/icons';
 import {
   ContainerOutlined,
   DesktopOutlined,
@@ -144,7 +145,7 @@ const Dashboard = () => {
   }
   return (
     <div style={{display:"flex",backgroundColor:"rgb(232, 232, 232)"}}>
-      <div style={{width: "15%",height:"100vh",backgroundColor:"rgb(0, 21, 41)"}}>
+      <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",flexDirection:"column", width: "15%",height:"100vh",backgroundColor:"rgb(0, 21, 41)"}}>
         <Menu style={{paddingTop: "20px",borderRadius:"5px"}}
           defaultSelectedKeys={['1']}
           defaultOpenKeys={['sub1']}
@@ -153,6 +154,8 @@ const Dashboard = () => {
           items={items}
           onClick={(e)=>changeState(e)}
         />
+      <Button style={{marginBottom:"20px",height:"30px",width:"9vw"}} type="primary" icon={<LogoutOutlined />} onClick={()=>(navigate('/'))}>
+      Sign Out</Button>
       </div >
     {/* Invoices */}
     {invoiceDisplay &&
@@ -277,6 +280,8 @@ const Dashboard = () => {
       <div>
         <p>Invoice</p>
       </div>
+      <Table columns={columns} dataSource={data} pagination={false} style={{ marginTop: 16 }} />
+      
     </div>
     }
     {addClient &&
