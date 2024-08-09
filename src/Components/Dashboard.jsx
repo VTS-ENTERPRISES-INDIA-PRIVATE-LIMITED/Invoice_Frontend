@@ -394,10 +394,10 @@ const onFinish = async (values) => {
       <div className="all-invoices">
         <div className="filters">
           <Search placeholder="Search" style={{ width: 200, marginRight: 16 }} />
-          <RangePicker placeholder={['Start Issue Date', 'End Issue Date']} />
-          <Button type="default" style={{ marginLeft: 16 }}>Reset</Button>
+          {/* <RangePicker placeholder={['Start Issue Date', 'End Issue Date']} /> */}
+          {/* <Button type="default" style={{ marginLeft: 16 }}>Reset</Button> */}
         </div>
-        <Table columns={columns} dataSource={allInvoices} rowKey="id" pagination={false} style={{ marginTop: 16 }} />
+        <Table columns={columns} dataSource={data} pagination={false} style={{ marginTop: 16 }} />
       </div>
     </div>
     </div>
