@@ -325,6 +325,68 @@
 }
 
 
+/* Table */
+
+.ctn-body {
+  padding: 20px;
+  background-color: #f0f2f5;
+  /* margin-left: 50vw;   */
+}
+
+.recent-invoices {
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.recent-invoices h2 {
+  margin: 0;
+}
+
+.recent-invoices .ant-btn {
+  margin-left: auto;
+}
+
+.invoice-card {
+  text-align: center;
+  border-radius: 10px;
+}
+
+.invoice-card-logo {
+  width: 50px;
+  height: 50px;
+  background-color: #1890ff;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  margin: 0 auto 10px;
+}
+
+.invoice-card-total {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.invoice-card-amount {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.all-invoices h2 {
+  margin-bottom: 20px;
+}
+
+.filters {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+
 
 /* Invoice CSS */
 

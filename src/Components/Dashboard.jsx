@@ -14,6 +14,75 @@ import ClientImg from './14b9c2d3fc8e930d59126591c1fcbbfd.png'
 import client2Img from './logo.jpg'
 import { Form, Select, Upload, Card, Row, Col } from 'antd';
 import { InboxOutlined } from '@ant-design/icons';
+import { Table,DatePicker } from 'antd';
+import { PlusOutlined, FilePdfOutlined, DeleteOutlined, EditOutlined } from '@ant-design/icons';
+
+const { RangePicker } = DatePicker;
+
+const recentInvoices = [
+  {
+    id: '0003',
+    total: '$200.00',
+    issueDate: '09/08/2024',
+  },
+];
+
+const columns = [
+  {
+    title: 'Invoice No#',
+    dataIndex: 'invoiceNo',
+    key: 'invoiceNo',
+    sorter: true,
+  },
+  {
+    title: 'Invoice Type',
+    dataIndex: 'invoiceType',
+    key: 'invoiceType',
+  },
+  {
+    title: 'Client',
+    dataIndex: 'client',
+    key: 'client',
+  },
+  {
+    title: 'Issue Date',
+    dataIndex: 'issueDate',
+    key: 'issueDate',
+  },
+  {
+    title: 'Total Value',
+    dataIndex: 'totalValue',
+    key: 'totalValue',
+  },
+  
+];
+
+const data = [
+  {
+    key: '1',
+    invoiceNo: '0003',
+    invoiceType: 'Invoice',
+    client: 'Gandu OP',
+    issueDate: '09/08/2024',
+    totalValue: '$200.00',
+  },
+  {
+    key: '2',
+    invoiceNo: '0002',
+    invoiceType: 'Invoice',
+    client: 'Gandu OP',
+    issueDate: '08/08/2024',
+    totalValue: '$200.00',
+  },
+  {
+    key: '3',
+    invoiceNo: '0001',
+    invoiceType: 'Invoice',
+    client: 'Gandu OP',
+    issueDate: '08/08/2024',
+    totalValue: '$200.00',
+  },
+];
 
 const { Option } = Select;
 
@@ -102,13 +171,45 @@ const Dashboard = () => {
           <p>Recent Invoices</p>
           <Button style={{marginLeft:"10px"}}  onClick={()=>navigate('/new')} type="primary">+ New</Button>
         </div>
-        <div style={{display:"flex",height:"20vh", width:"78vw",justifyContent:"center",alignItems:"center"}}>
+        <div className="recent-invoices">
+        {/* <h2>Recent invoices</h2> */}
+        {/* <Button type="primary" icon={<PlusOutlined />}>New</Button> */}
+        <Row style={{width:"100vw",marginTop:"20px"}}>
+          {recentInvoices.map(invoice => (
+            <Col span={5} key={invoice.id}>
+              <Card className="invoice-card">
+                <div className="invoice-card-logo">GO</div>
+                <div className="invoice-card-total">TOTAL</div>
+                <div className="invoice-card-amount">{invoice.total}</div>
+                <div>Invoice: {invoice.id}</div>
+                <div>Issue Date: {invoice.issueDate}</div>
+              </Card>
+            </Col>
+          ))}
+        </Row>
+      </div>
+        {/* <div style={{display:"flex",height:"20vh", width:"78vw",justifyContent:"center",alignItems:"center"}}>
           <p>Nothing to see here yet. Click 'New' above to get started!</p>
-        </div>
+        </div> */}
         <hr />
         <div>
           <p style={{fontSize:"30px"}}>All invoices</p>
         </div>
+        <div className="ctn-body">
+      
+
+      <div className="all-invoices">
+        {/* <h2>All invoices</h2> */}
+        <div className="filters">
+          <Search placeholder="Search" style={{ width: 200, marginRight: 16 }} />
+          <RangePicker placeholder={['Start Issue Date', 'End Issue Date']} />
+          <Button type="default" style={{ marginLeft: 16 }}>Reset</Button>
+          {/* <Button type="default" style={{ marginLeft: 16 }}>Hide filters</Button> */}
+        </div>
+        <Table columns={columns} dataSource={data} pagination={false} style={{ marginTop: 16 }} />
+      </div>
+    </div>
+
     </div>
     }
     {/* Client */}
