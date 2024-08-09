@@ -137,35 +137,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .body {
   /* width: 1000px; */
   font-family: 'Calibri';
@@ -549,6 +520,58 @@ th {
 #customer-name {
   word-wrap: break-word;
 }
+
+
+
+
+
+
+/* Custom styles to remove border and ensure image displays correctly */
+.ant-no-border .ant-upload-list-item {
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 8px !important;
+  overflow: hidden; 
+}
+
+.ant-no-border .ant-upload-list-picture-card .ant-upload-list-item-thumbnail {
+  border-radius: 8px !important;
+  overflow: hidden; 
+}
+
+.ant-no-border .ant-upload-list-item-thumbnail img {
+  width: 100%;
+  height: auto; 
+  border-radius: 8px !important;
+}
+
+.ant-no-border .ant-upload-list-picture-card-container {
+  width: 100px; 
+  height: 100px; 
+  border-radius: 8px !important; 
+  overflow: hidden;
+}
+
+.ant-upload.ant-upload-select-picture-card {
+  border: none !important;
+  box-shadow: none !important;
+  background: none !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

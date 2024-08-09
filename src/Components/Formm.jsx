@@ -221,18 +221,21 @@ const Form = () => {
             />
           </div>
           <div className="top-logo">
-            <h5 style={{ color: 'rgb(126, 121, 114)' }}>ORIGINAL FOR RECIPIENT</h5>
-            <div style={{ display: 'flex', justifyContent: 'flex-end', width: '25vw', height: '20vh' }}>
-              <Upload
-                action="https://660d2bd96ddfa2943b33731c.mockapi.io/api/upload"
-                listType="picture-card"
-                onChange={onChanged}
-                onPreview={onPreview}
-              >
-                {fileList.length < 1 && '+ Upload'}
-              </Upload>
-            </div>
-          </div>
+    <h5 style={{ color: 'rgb(126, 121, 114)' }}>ORIGINAL FOR RECIPIENT</h5>
+    <div style={{ display: 'flex', justifyContent: 'flex-end', width: '25vw', height: '20vh' }}>
+      <Upload
+        className='ant-no-border'
+        style={{ border: 'none', boxShadow: 'none', borderRadius: '8px' }} // Inline style to remove border and make the image square
+        listType="picture-card"
+        fileList={fileList}
+        onChange={onChanged}
+        onPreview={onPreview}
+      >
+        {fileList.length < 1 && '+ Upload'}
+      </Upload>
+    </div>
+  </div>
+
         </div>
         <br />
         <br />
@@ -347,14 +350,14 @@ const Form = () => {
             <p>&nbsp;</p>
             <p style={{ fontWeight: 'bold', color: '#767070' }}>For <Input name="recipientCompany" style={{ width: "10vw" }} placeholder="Recipient Company" value={formData.recipientCompany} onChange={handleChange} /></p>
             <br />
-            <Upload
+            {/* <Upload
               action="https://660d2bd96ddfa2943b33731c.mockapi.io/api/upload"
               listType="picture-card"
               onChange={onChanged}
               onPreview={onPreview}
             >
               {fileList.length < 1 && '+ Upload'}
-            </Upload>
+            </Upload> */}
           </div>
         </div>
         <div>
@@ -371,7 +374,7 @@ const Form = () => {
           <br />
         </div>
       </div>
-      <Button style={{ width: "20vw", marginBottom: "20px" }} type='primary' onClick={downloadInvoice}>Generate Invoice</Button>
+      <Button style={{ width: "10vw", marginBottom: "15px",borderRadius:"10px" }} type='primary' onClick={downloadInvoice}>Generate Invoice</Button>
     </div>
   );
 };

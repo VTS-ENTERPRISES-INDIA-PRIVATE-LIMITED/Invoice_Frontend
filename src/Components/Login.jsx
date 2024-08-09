@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -24,7 +25,7 @@ function Login({ onClose }) {
     return re.test(String(email).toLowerCase());
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     let valid = true;
 
@@ -38,8 +39,18 @@ function Login({ onClose }) {
       valid = false;
     }
 
-    if (valid) {
-      console.log("Login successful");
+    try {
+      if (valid) {
+        const res = await axios.post("https://invoice-back.onrender.com/users/login", { email, password });
+        console.log(res.data);
+        if (res.error) {
+          throw new Error(res.data.error);
+        }
+        const token = res.data.token;
+        navigate("/dashboard");
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -47,10 +58,15 @@ function Login({ onClose }) {
     setShowPassword(!showPassword);
   };
 
+  // Update the onClose handler to navigate to the home page
+  const handleClose = () => {
+    navigate('/');
+  };
+
   return (
     <div className="login-modal-overlay">
       <div className="login-modal">
-        <button className="login-close-btn" onClick={onClose}>
+        <button className="login-close-btn" onClick={handleClose}>
           &times;
         </button>
         <div className="login-modal-content">
@@ -93,7 +109,7 @@ function Login({ onClose }) {
               </div>
               <button type="button" className="login-forgot-password" onClick={() => navigate('/forgot')}>Forgot password?</button>
             </div>
-            <button type="submit" className="login-login-btn">Login</button>
+            <button type="submit" className="login-login-btn" onClick={handleSubmit}>Login</button>
           </form>
         </div>
       </div>
